@@ -111,8 +111,6 @@
     <Content Include="Content\css\scrollbars.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\approved.jpg" />
-    <Content Include="Content\img\bg.png" />
-    <Content Include="Content\img\bg2.png" />
     <Content Include="Content\img\checkmark.png" />
     <Content Include="Content\img\close-hover.png" />
     <Content Include="Content\img\close-press.png" />
