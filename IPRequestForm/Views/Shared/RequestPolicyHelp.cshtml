@@ -1,0 +1,174 @@
+﻿<div class="policy-help-wrapper">
+    <div class="policy-help-container">
+        <div class="ip-help-box">
+        <h3>Policy IP Address Help</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Usage
+                    </th>
+                    <th>
+                        Example
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Single IP
+                    </td>
+                    <td>
+                        ex: 10.14.2.10
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Department (Vlan)
+                    </td>
+                    <td>
+                        <p>
+                            &lt;IP Inside Department&gt;/&lt;Department Subnet Mask Bits&gt;</p>
+                        <p>
+                            ex: 10.14.2.10/24</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Segment (Multiple Vlans)
+                    </td>
+                    <td>
+                        <p>
+                            &lt;IP Inside Segment&gt;/&lt;Segment Subnet Mask Bits&gt;</p>
+                        <p>
+                            ex: 10.14.2.10/16</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Vlan in All Branches
+                    </td>
+                    <td>
+                        <p>
+                            &lt;IP Inside Vlan&gt;/&lt;Vlan Subnet Mask Bits&gt;</p>
+                        <p>
+                            ex: 10.14.255.128/25</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        IP Range
+                    </td>
+                    <td>
+                        <p>
+                            Two IPs separated by dash (-)
+                        </p>
+                        <p>
+                            ex: 10.14.2.10 - 10.14.2.20</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        IP Range in All Branches
+                    </td>
+                    <td>
+                        <p>
+                            Two IPs separated by dash (-)
+                        </p>
+                        <p>
+                            ex: 10.14.255.10 - 10.14.255.20</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="subnet-help-box">
+        <h4>Subnet Mask to Subnet Mask Bits</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Subnet Mask
+                    </th>
+                    <th>
+                        Subnet Mask Bits
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        255.255.0.0
+                    </td>
+                    <td>
+                        16
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.0
+                    </td>
+                    <td>
+                        24
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.128
+                    </td>
+                    <td>
+                        25
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.192
+                    </td>
+                    <td>
+                        26
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.224
+                    </td>
+                    <td>
+                        27
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.240
+                    </td>
+                    <td>
+                        28
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.248
+                    </td>
+                    <td>
+                        29
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        255.255.255.252
+                    </td>
+                    <td>
+                        30
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="direction-help-box">
+        <h4>Server Policy Directions:</h4>
+        <h5>To Requested Server</h5>
+        <p>The IP address or the segment will initiate traffic to the requested server.</p>
+        <h5>From Requested Server</h5>
+        <p>the requested server will initiate traffic to the IP address or the segment.</p>
+        </div>
+    </div>
+</div>

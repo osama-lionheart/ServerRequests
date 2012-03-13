@@ -1,0 +1,102 @@
+﻿@model IPRequestForm.ViewModels.RequestsViewModel
+
+@using System.Linq;
+@{    
+    ViewBag.Title = "UserRequests";
+}
+
+<div class="requests-wrapper">
+
+@Html.Partial("RequestsPagination")
+
+<ul class="requests">
+    @for (int i = 0; i < 1; i++)
+    {
+        foreach (var request in Model.Requests)
+        {
+        <li>
+            <div class="request table fill @(
+ request.LastSecurityAction != null && request.LastSecurityAction.Approved == true ? "approved" :
+            (request.LastSecurityAction != null && request.LastSecurityAction.Approved == false ? "rejected" : ""))
+                @(request.LastCommunicationAction != null && request.LastCommunicationAction.Completed == true ? "completed" : "")">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <div class="request-result">
+                            <div class="status-icon"></div>
+                        </div>
+                    </div>
+                    <div class="table-cell fill">
+                        <div class="request-app">
+                            <h2><a href="/request/@request.Request.RequestId">@request.Request.ApplicationName (@request.Request.BusinessService)</a></h2>
+                            <ul class="app-types">
+                                @foreach (var requestApplicationType in request.Request.RequestApplicationTypes)
+                                {
+                                    <li><a href="/request?applicationTypeId=@requestApplicationType.Id">@requestApplicationType.Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="request-status">
+                            <div class="badge user">
+                                <a class="user-name" href="/@request.Request.RequestUser.Id/">@request.Request.RequestUser.FirstName @request.Request.RequestUser.LastName</a>
+                                <div class="date" title="@request.Request.Date.ToString("d MMM yyyy h:MM tt")">
+                                    @request.Request.Date.ToString("d MMM yyyy")
+                                </div>
+                            </div>
+                        
+                        @if (@request.LastSecurityAction != null && request.LastSecurityAction.Assigned)
+                        {
+                            <div class="badge security">
+                                <a class="user-name" href="/@request.LastSecurityAction.User.Id/">@request.LastSecurityAction.User.FirstName @request.LastSecurityAction.User.LastName</a>
+                                <div class="date" title="@request.SecurityActions.Last().Date.ToString("d MMM yyyy h:MM tt")">
+                                    @request.SecurityActions.Last().Date.ToString("d MMM yyyy")
+                                </div>
+                            </div>
+                        }
+                        
+                        @if (@request.LastCommunicationAction != null && request.LastCommunicationAction.Assigned)
+                        {
+                            <div class="badge communication">
+                                <a class="user-name" href="/@request.LastCommunicationAction.User.Id/">@request.LastCommunicationAction.User.FirstName @request.LastCommunicationAction.User.LastName</a>
+                                <div class="date" title="@request.LastCommunicationAction.Date.ToString("d MMM yyyy h:MM tt")">
+                                    @request.LastCommunicationAction.Date.ToString("d MMM yyyy")
+                                </div>
+                            </div>
+                        }
+                        </div>
+                    </div>
+                    <div class="table-cell" style="min-width: 150px;">
+                    @if (request.IPAddress != null || request.Vlan != null)
+                    {
+                        <div class="ribbon @(request.LastCommunicationAction != null && request.LastCommunicationAction.Completed == true ? "blue" : "green")">
+                            <div class="request-ip">
+                                @if (request.IPAddress != null)
+                                {
+                                    @request.IPAddress
+                                }
+                                else
+                                {
+                                    @:N / A
+                                }
+                            </div>
+                            <div class="request-vlan">
+                                @if (request.Vlan != null)
+                                {
+                                    <a href="/request?vlanId=@request.Vlan.Id"><text>VLAN</text>@request.Vlan.Number @request.Vlan.Name</a>
+                                }
+                            </div>
+                            <div class="ribbon-tail">
+                                <div class="ribbon-top"></div>
+                                <div class="ribbon-bottom"></div>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+        </li>
+        }
+    }
+</ul>
+<br />
+@Html.Partial("RequestsPagination")
+</div>

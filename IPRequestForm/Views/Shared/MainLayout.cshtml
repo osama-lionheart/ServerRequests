@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/normalize.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/scrollbars.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/login.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/datepicker.css")" rel="stylesheet" media="screen" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.textchange.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/script.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/forms.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/datepicker.js")" type="text/javascript"></script>
+    @RenderSection("Head", false)
+</head>
+
+<body>
+    <div class="wrapper">
+        @RenderSection("TopBar", false)
+        <div class="main table fill">
+            <div class="table-row">
+                <div class="table-cell">
+                    @Html.Partial("Header")
+                </div>
+            </div>
+            <div class="table-row fill">
+                <div class="table-cell">
+                    <div class="main table fill">
+                        <div class="table-row fill">
+                            <div class="left-panel table-cell">
+                            @RenderSection("LeftPanel", false)
+                            </div>
+                            <div class="table-cell main-panel">
+                                <div class="content-wrapper">
+                                    <div class="content-background">
+                                        <div class="inner-content-background">
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        @RenderBody()
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right-panel table-cell">
+                            @RenderSection("RightPanel", false)
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">
+                    @Html.Partial("Footer")
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

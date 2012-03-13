@@ -1,0 +1,415 @@
+﻿@model IPRequestForm.ViewModels.RequestViewModel
+@{
+    ViewBag.Title = "UserRequest";
+}
+
+<div class="actions-bar">
+    @if (Model.NewerRequest == null)
+    {
+        if (!Model.Request.Deleted)
+        {
+        <a href="/request/@Model.Request.RequestId/edit" class="button" tabindex="0">Edit</a>
+        }
+
+        if (Roles.IsUserInRole("Security") || Roles.IsUserInRole("Communication") || Model.Request.RequestOwner.Id == Model.User.Id)
+        {
+            if (Model.Request.Deleted)
+            {
+        <div class="delete-form">
+            <form action="/request/@Model.Request.RequestId/undelete" method="POST" data-confirm="true">
+                <input type="submit" class="button" value="Undelete"/>
+            </form>
+        </div>
+            }
+            else
+            {
+        <div class="delete-form">
+            <form action="/request/@Model.Request.RequestId/delete" method="POST" data-confirm="true">
+                <input type="submit" class="button" value="Delete"/>
+            </form>
+        </div>
+            }
+        }
+    }
+    <div class="request-versions">
+        @if (Model.OlderRequest != null)
+        {
+            <a class="button button-collapse-right" href="/request/@Model.OlderRequest.Id" title="Previous version" tabindex="0">&lsaquo;</a>
+        }
+        else
+        {
+            <div class="button button-collapse-right" disabled="disabled" title="No older versions">&lsaquo;</div>
+        }
+        @if (Model.NewerRequest != null)
+        {
+            <a class="button button-collapse-left" href="/request/@Model.NewerRequest.Id" title="Newer version" tabindex="0">&rsaquo;</a>
+        }
+        else
+        {
+            <div class="button button-collapse-left" title="No newer versions" disabled="disabled">&rsaquo;</div>
+        }
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+@Html.Partial("RequestForm", Model.Request)
+
+@helper DisplayUserName(IPRequestForm.Models.User user)
+    {
+    
+        if (user.Id == Model.User.Id)
+        {
+        @: you
+    }
+        else
+        {
+        <a class="user-name" href="/@user.Id/request">@user.FirstName @user.LastName</a>
+        }
+}
+
+<div class="request-wrapper">
+<h3 class="section-header"><span>Security Action</span></h3>
+
+@if (Model.LastSecurityAction != null && Model.LastSecurityAction.Assigned &&
+    Model.LastSecurityAction.Approved == true && Model.LastSecurityAction.VlanId != null)
+{
+    <div class="action-result ribbon green">
+        VLAN<text>@Model.LastSecurityAction.Vlan.Number</text> @Model.LastSecurityAction.Vlan.Name
+        <div class="ribbon-tail">
+            <div class="ribbon-top"></div>
+            <div class="ribbon-bottom"></div>
+        </div>
+    </div>
+}
+
+@if (Model.LastSecurityAction != null && Model.LastSecurityAction.Assigned)
+{
+    <div class="security-action-status">
+        @if (Model.LastSecurityAction.Approved == true)
+        {
+            @: This request has been <strong class="approved">approved</strong> by @DisplayUserName(Model.LastSecurityAction.User)
+        }
+        else if (Model.LastSecurityAction.Approved == false)
+        {
+            @: This request has been <strong class="rejected">rejected</strong> by @DisplayUserName(Model.LastSecurityAction.User)
+        }
+        else if (Model.LastSecurityAction.Approved == null)
+        {
+            @: This request is being <strong>processed</strong> by @DisplayUserName(Model.LastSecurityAction.User)
+        }
+        
+        @if (!string.IsNullOrWhiteSpace(Model.LastSecurityAction.Notes))
+        {
+            <em>@Model.LastSecurityAction.Notes</em>
+        }
+    </div>
+    
+    @* Release the task from the assigned security engineer *@
+        if (Roles.IsUserInRole("Security") && Model.NewerRequest == null)
+        {
+        <div>
+            <form  method="post" action="/Request/@Model.Request.RequestId/ReleaseSecurityEngineer" data-confirm="true">
+                <div class="form-element notes">
+                    <label>
+                        <strong>Notes</strong>
+                        <textarea name="notes" rows="3" tabindex="0"></textarea>
+                    </label>
+                </div>
+                <input name="ReleaseSecurityEngineer" type="submit" class="button" value="Release" />
+            </form>
+        </div>
+        }
+}
+else
+{
+    <div class="security-action-status">No one yet has been assigned to this request.</div>
+    
+    if (Roles.IsUserInRole("Security") && Model.NewerRequest == null)
+    {
+        <form  method="post" action="/Request/@Model.Request.RequestId/AssignSecurityEngineer" data-confirm="true">
+            <input name="AssignSecurityEngineer" type="submit" class="button green-button" value="Assign to me" />
+        </form>
+    }
+}
+
+
+@if (@Roles.IsUserInRole("Security") && Model.NewerRequest == null)
+{
+    if (Model.LastSecurityAction != null && Model.LastSecurityAction.Assigned)
+    {
+    <div class="security-action">
+        <form  method="post" action="/Request/@Model.Request.RequestId/SecurityApproval" data-confirm="true">
+        <div class="form-element">
+            <label for="VlanId">
+                <strong>Vlan</strong>
+                <select id="VlanId" name="VlanId">
+                    <option value="0">Select...</option>
+                    @foreach (var vlan in @Model.Vlans)
+                    {
+                        <option value="@vlan.Id" @(vlan.Id == Model.LastSecurityAction.VlanId ? "selected" : "")>@vlan.Name
+                            @vlan.Number</option>
+                    }
+                </select>
+            </label>
+        </div>
+        <div class="form-element notes">
+            <label>
+                <strong>Notes</strong>
+                <textarea name="notes" rows="3" tabindex="0">@Model.LastSecurityAction.Notes</textarea>
+            </label>
+        </div>
+        <input name="Approval" type="submit" class="button green-button" value="Approve" />
+        <input name="Approval" type="submit" class="button create-button" value="Reject" />
+        </form>
+    </div>
+    }
+}
+
+
+
+
+
+
+
+<h3 class="section-header"><span>Communication Action</span></h3>
+
+@if (Model.LastCommunicationAction != null && Model.LastCommunicationAction.Completed != null)
+{
+    <div class="action-result ribbon blue">
+        @Model.IPAddress
+        <div class="ribbon-tail">
+            <div class="ribbon-top"></div>
+            <div class="ribbon-bottom"></div>
+        </div>
+    </div>
+}
+
+@if (Model.LastCommunicationAction != null && Model.LastCommunicationAction.Assigned)
+{
+    <div class="communication-action-status">
+        @if (Model.LastCommunicationAction.Completed == true)
+        {
+            @: This request has been <strong class="completed">completed</strong> by @DisplayUserName(Model.LastCommunicationAction.User)
+    
+        }
+        else
+        {
+            @: This request is being <strong>processed</strong> by @DisplayUserName(Model.LastCommunicationAction.User)
+        }
+        
+        @if (!string.IsNullOrWhiteSpace(Model.LastCommunicationAction.Notes))
+        {
+            <em>@Model.LastCommunicationAction.Notes</em>
+        }
+    </div>
+    
+    @* Release the task from the assigned communication engineer *@
+        if (Roles.IsUserInRole("Communication") && Model.NewerRequest == null)
+        {
+        <div>
+            <form  method="post" action="/Request/@Model.Request.RequestId/ReleaseCommunicationEngineer" data-confirm="true">
+                <div class="form-element notes">
+                    <label>
+                        <strong>Notes</strong>
+                        <textarea name="notes" rows="3" tabindex="0"></textarea>
+                    </label>
+                </div>
+                <input name="ReleaseCommunicationEngineer" type="submit" class="button" value="Release" />
+            </form>
+        </div>
+        }
+}
+else
+{
+    <div class="communication-action-status">No one yet has been assigned to this request.</div>
+}
+
+
+
+
+
+
+
+@if (Roles.IsUserInRole("Communication"))
+{
+    if (@Model.LastSecurityAction != null && @Model.LastSecurityAction.Approved == true)
+    {
+        if ((Model.LastCommunicationAction == null || !Model.LastCommunicationAction.Assigned) && Model.NewerRequest == null)
+        {
+        <form  method="post" action="/Request/@Model.Request.RequestId/AssignCommunicationEngineer" data-confirm="true">
+            <input name="AssignCommunicationEngineer" type="submit" class="button green-button" value="Assign to me" />
+        </form>
+        }
+        else if (Model.LastCommunicationAction != null && Model.LastCommunicationAction.User.Id == Model.User.Id && Model.NewerRequest == null)
+        {
+            var canEdit = (Model.LastCommunicationAction.Completed == true);
+            var serverIPAssigned = (Model.LastCommunicationAction.Completed == false);
+    
+    <div class="communication-action">
+        <form action="/Request/@Model.Request.RequestId/ResolveRequest" method="post" data-confirm="true">
+        @if (Model.Request.ServerTypeName == IPRequestForm.ViewModels.ServerTypes.Standalone)
+        {
+            <script>
+@{
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var switches = Model.Switches.Select(i => new
+            {
+                IPAddress = IPRequestForm.Controllers.CommonFunctions.IPDotted(i.IP.Address),
+                Name = i.Name,
+                Stackable = (i.StackableNumber != null)
+            });
+
+            //var dict = switches.ToDictionary(x => x.IPAddress, y => new { y.Name, y.Stackable });
+
+            string data = serializer.Serialize(switches);
+}
+                var switches = @Html.Raw(data);
+
+                $(function(){
+                    $('#SwitchIPAddress').bind('textchange', function() {
+                        var ip = $(this).val().trim();
+                    
+                        for(var i = switches.length - 1; i > 0; i--) {
+                        
+                            if(switches[i].IPAddress === ip) {
+                                $('#SwitchName').val(switches[i].Name).attr('disabled', 'disabled');
+                                $('.stackable').prop('checked', switches[i].Stackable).attr('disabled', 'disabled');
+                    
+                            } else {
+                                $('#SwitchName').val('').removeAttr('disabled');
+                                $('.stackable').prop('checked', false).removeAttr('disabled');
+                            }
+                        }
+                    });
+
+
+                    $('.stackable').change(function() {
+                        if(this.checked) {
+                            $('#SwitchNumber').removeAttr('disabled');
+                        } else {
+                            $('#SwitchNumber').attr('disabled', 'disabled');
+                        }
+                    });
+                });
+            </script>
+            <div class="form-element">
+                <label>
+                    <strong>Switch IP Address</strong>
+                    <input type="text" id="SwitchIPAddress" name="SwitchIPAddress" value="@(canEdit ? Html.Raw(Model.SwitchIPAddress).ToHtmlString() : "")" />
+                </label>
+            </div>
+            <div class="form-element">
+                <label>
+                    <strong>Switch Name</strong>
+                    <input type="text" id="SwitchName" name="SwitchName"
+                    value="@(canEdit ? Html.Raw(Model.SwitchName).ToHtmlString() : "")" />
+                </label>
+            </div>
+            <div class="form-element switch-interface">
+                <label class="check-label">
+                    <input class="stackable" type="checkbox" @(Model.SwitchNumber != null ? Html.Raw("checked=checked").ToHtmlString() : "")/>
+                    <strong>Stackable or VSS</strong>
+                </label>
+                <label>
+                    <strong>Switch Interface</strong>
+                    <input type="text" id="SwitchNumber" name="SwitchNumber" @(Model.SwitchNumber == null ? Html.Raw("disabled=disabled").ToHtmlString() : "")
+                        value="@(canEdit ? Html.Raw(Model.SwitchNumber.ToString()).ToHtmlString() : "")" /> /
+                    <input type="text" id="SwitchModuleNumber" name="SwitchModuleNumber"
+                        value="@(canEdit ? Html.Raw(Model.SwitchModuleNumber.ToString()).ToHtmlString() : "")" /> /
+                    <input type="text" id="SwitchPortNumber" name="SwitchPortNumber"
+                        value="@(canEdit ? Html.Raw(Model.SwitchPortNumber.ToString()).ToHtmlString() : "")"/>
+                </label>
+            </div>
+        }
+    
+        @{
+            var ipError = !string.IsNullOrWhiteSpace(Model.ServerIPAddressError);
+        }
+
+        <div class="form-element @(ipError ? "form-error" : "")">
+            <label>
+                <strong>Server IP Address</strong>
+                <input type="text" id="ServerIPAddress" name="ServerIPAddress"
+                value="@((canEdit || serverIPAssigned) ? Html.Raw(Model.IPAddress).ToHtmlString() : "")"/>
+            </label>
+        @if (ipError)
+        {
+            <div class="error-message">@Model.ServerIPAddressError</div>
+        }
+        </div>
+        
+        <div class="form-element notes">
+            <label>
+                <strong>Notes</strong>
+                <textarea name="notes" rows="3" tabindex="0">@(canEdit || serverIPAssigned ? Html.Raw(Model.LastCommunicationAction.Notes).ToHtmlString() : "")</textarea>
+            </label>
+        </div>
+
+        <input type="submit" name="submit" class="button submit-button" value="Resolve Task" />
+        </form>
+    </div>
+    
+        }
+    }
+}
+
+@helper DisplayName(object value) 
+{
+    var field = value.GetType().GetField(value.ToString());
+    
+    if (field != null)
+    {
+        var display = ((System.ComponentModel.DataAnnotations.DisplayAttribute[])field.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.DisplayAttribute), false)).FirstOrDefault();
+        
+        if (display != null)
+        {
+            @display.Name
+        }
+        else
+        {
+            @value.ToString()
+        }
+    }
+}
+
+<h3 class="section-header"><span>Log</span></h3>
+<div class="request-log-wrapper">
+    <table class="request-log">
+        <thead>
+            <tr>
+                <th>
+                    Time
+                </th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Action
+                </th>
+                <th>
+                    Notes
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var log in Model.Logs)
+                {
+                    <tr>
+                        <td>
+                            <span class="log-time">@log.Date.ToString("d MMM yyyy h:MM tt")</span>
+                        </td>
+                        <td>
+                            <span class="log-user">@DisplayUserName(log.User)</span>
+                        </td>
+                        <td>
+                            <span class="log-action">@DisplayName(@log.LogAction)</span>
+                        </td>
+                        <td>
+                            <span class="log-notes">@log.Notes</span>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+    </table>
+</div>
+</div>

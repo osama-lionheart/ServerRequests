@@ -1,0 +1,724 @@
+﻿.account-wrapper {
+    text-align: center;
+}
+
+.account-box {
+    display: inline-block;   
+    padding: 20px;
+    text-align: left;
+    margin: 50px;
+    border-radius: 5px;
+    background-color: hsla(0, 0%, 96%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 93%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 93%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 93%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 93%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 98%, 1), hsla(0, 0%, 93%, 1));
+    border: solid 1px hsla(0, 0%, 80%, 1);
+    box-shadow: 0px 1px 10px hsla(0, 0%, 50%, 0.4);
+}
+
+.settings-box, .register-box {
+    width: 300px;
+}
+
+.login-box {
+    width: 250px;
+}
+
+.account-box h2, .request-form h2 {
+    position: relative;
+    color: hsla(0, 0%, 40%, 1);
+    font-weight: normal;
+    font-size: 2em;
+    margin: 5px -30px 1em;
+    border: solid 1px hsla(0, 0%, 0%, 0.2);
+    padding: 0.4em 1.3em;
+    box-shadow: 0px 7px 7px -7px hsla(0, 0%, 30%, 0.2);
+    background-color: hsla(0, 0%, 97%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 99%, 1), hsla(0, 0%, 95%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 99%, 1), hsla(0, 0%, 95%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 99%, 1), hsla(0, 0%, 95%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 99%, 1), hsla(0, 0%, 95%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 99%, 1), hsla(0, 0%, 95%, 1));
+    border-radius: 5px 5px 3px 3px;
+}
+
+.request-form h2 {
+    margin-left: -40px;
+    margin-right: -40px;
+}
+
+.account-box h2:before, .request-form h2:before {
+    content: "";
+    border: solid 5px transparent;
+    border-right: solid 5px hsla(0, 0%, 70%, 1);
+    border-top: solid 3px hsla(0, 0%, 70%, 1);
+    border-bottom-width: 3px;
+    position: absolute;
+    left: -1px;
+    top: 100%;
+}
+
+.account-box h2:after, .request-form h2:after {
+    content: "";
+    border: solid 5px transparent;
+    border-left: solid 5px hsla(0, 0%, 70%, 1);
+    border-top: solid 3px hsla(0, 0%, 70%, 1);
+    border-bottom-width: 3px;
+    position: absolute;
+    right: -1px;
+    top: 100%;
+}
+
+label {
+    display: block;
+    width: 100%;
+}
+
+.form-element.last-child {
+    margin-bottom: 0px;
+}
+
+.form-element strong {
+    display: block;
+    margin: 0 0 0.5em 0.2em;
+    
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+
+.check-label {
+    width: auto;
+    margin-left: 15px;
+    vertical-align: bottom;
+}
+
+.check-label strong, .check-label, .blade-location {
+    display: inline-block;
+}
+
+.check-label strong {
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+
+input[type=text], 
+input[type=password], 
+input[type=email],
+textarea {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    border: solid 1px hsla(0, 0%, 85%, 1);
+    border-top-color: hsla(0, 0%, 75%, 1);
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-transition: box-shadow 0.3s;
+       -moz-transition: box-shadow 0.3s;
+        -ms-transition: box-shadow 0.3s;
+         -o-transition: box-shadow 0.3s;
+            transition: box-shadow 0.3s;
+}
+
+textarea {
+    max-width: 100%;
+    width: auto;
+}
+
+input[type=text]:hover, 
+input[type=password]:hover, 
+input[type=email]:hover,
+textarea:hover {
+    border: 1px solid hsla(0, 0%, 73%, 1);
+    border-top: 1px solid hsla(0, 0%, 63%, 1);
+    box-shadow: inset 0 1px 2px hsla(0, 0%, 0%, 0.1);
+}
+
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus,
+textarea:focus {
+    box-shadow: inset 0px 1px 2px hsla(0, 0%, 0%, 0.3);
+}
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus,
+textarea:focus,
+input[type=checkbox]:focus,
+input[type=radio]:focus,
+.select-header:focus {
+    outline: 0;
+    border-color: hsl(217, 99%, 65%) !important;
+}
+.form-element.form-error input[type=text], 
+.form-element.form-error input[type=password],
+.form-element.form-error input[type=email],
+.form-element.form-error textarea,
+.form-element.form-error input[type=checkbox],
+.form-element.form-error input[type=radio],
+.form-element.form-error .select-header, .form-element.form-error a {
+    border-color: hsl(7, 71%, 55%)
+}
+.form-element {
+    margin: 0 0 1.5em;
+    width: 300px;
+}
+.account-box .form-element {
+    width: auto;
+}
+
+.form-element.notes {
+    min-width: 300px;
+    max-width: 100%;
+    width: auto;
+}
+
+.form-element.notes label {
+    display: inline-block;
+}
+
+.form-element.notes textarea {
+    display: inline-block;
+    min-width: 300px;
+}
+
+.account-box a {
+    color: hsla(218, 85%, 43%, 1);
+    text-decoration: none;
+}
+
+.account-box a:hover {
+    text-decoration: underline;
+}
+
+.account-box .submit-button {
+    margin: 0 1.5em 0 0;
+}
+
+.login-box .remember,  .login-box .remember-label {
+    display: inline-block;
+    width: auto;
+}
+
+.login-box .remember {
+    vertical-align: middle;
+}
+
+.login-box .remember-label {
+    font-weight: normal;
+    color: hsla(0, 0%, 50%, 1);
+    margin-left: 7px;
+}
+
+.login-box .forgot-password {
+    margin-top: 1em;
+}
+
+.error-message {
+    color: hsla(0, 80%, 40%, 1);
+    padding: 7px 7px 0px;
+}
+
+.form-element .form-value {
+    padding: 0px 10px;
+}
+
+.reset-box {
+    width: 350px;
+}
+
+.content {
+    padding: 0px;
+}
+
+.request-form {
+    padding: 0px 30px 0px;
+    margin-bottom: 30px;
+}
+h3 {
+    font-size: 1.5em;
+    color: hsla(0, 0%, 30%, 1);
+}
+.request-policy {
+    margin: 20px -29px;
+    padding: 25px 30px 30px;
+    background-color: hsla(0, 0%, 96%, 1);
+    background-image: url(/Content/img/curtain-light.png);
+    border: solid 1px hsla(0, 0%, 80%, 1);
+    border-left-width: 0px;
+    border-right-width: 0px;
+    box-shadow: inset 0px 10px 10px -10px hsla(0, 0%, 50%, 0.4), inset 0px -10px 10px -10px hsla(0, 0%, 50%, 0.4), 0px 1px 0px white, 0px -1px 0px white;
+    position: relative;
+}
+.request-policy h3 {
+    margin: 0 0 0.5em;
+    text-align: center;
+    color: hsla(0, 0%, 0%, 0.5);
+    text-shadow: 0 1px 1px white;
+}
+h3.section-header {
+    position: relative;
+}
+h3.section-header span {
+    background: hsla(0, 0%, 98%, 1);
+    padding-right: 10px;
+}
+h3.section-header:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top:50%;
+    right: 0px;
+    height: 1px;
+    background: hsla(0, 0%, 85%, 1);
+    box-shadow: 0px 1px 0px hsla(0, 0%, 100%, 1);
+    z-index: -1;
+}
+
+.blade-location {
+    width: 70%;
+}
+
+/*****************************************************************************/
+
+.ports-wrapper, .request-log-wrapper {
+    border: solid 3px hsla(0, 0%, 92%, 1);
+    border-radius: 3px;
+}
+
+table.ports, .request-log {
+    border: solid 1px hsla(0, 0%, 79%, 1);
+    border-radius: 3px;
+    width: 100%;
+}
+
+.request-log {
+    background-image: url(/Content/img/curtain-light.png);
+}
+
+.ports thead tr, .request-log thead tr {
+    background-color: hsla(0, 0%, 95%, 0.8);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 98%, 0.8), hsla(0, 0%, 92%, 0.8));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 98%, 0.8), hsla(0, 0%, 92%, 0.8));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 98%, 0.8), hsla(0, 0%, 92%, 0.8));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 98%, 0.8), hsla(0, 0%, 92%, 0.8));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 98%, 0.8), hsla(0, 0%, 92%, 0.8));
+    border-bottom: solid 1px hsla(0, 0%, 85%, 1);
+}
+
+.ports tbody tr, .request-log tbody tr {
+    background: hsla(0, 0%, 100%, 0.6);
+    border-bottom: solid 1px hsla(0, 0%, 93%, 1);
+}
+
+.ports tbody tr:last-child, .request-log tbody tr:last-child{
+    border-bottom: 0px;
+}
+
+.ports th, .request-log th {
+    padding: 8px 10px;
+    color: hsla(0, 0%, 35%, 1);
+    text-shadow: 0px 1px 0px white;
+    text-align: left;
+}
+
+.ports td, .request-log td {
+    padding: 5px 3px;
+}
+
+.ports td span, .request-log td span {
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.ports tr.deleted td * {
+    text-decoration: line-through;
+    color: hsla(0, 80%, 85%, 1);
+}
+
+.ports tr .close-button {
+    opacity: 0;
+}
+
+.ports tr:hover .close-button {
+    opacity: 1;
+}
+
+.ports tr.new-port .close-button {
+    display: none;
+}
+
+.request-log .log-time, .request-log .log-user {
+    white-space: nowrap;
+}
+
+/*****************************************************************************/
+/* Checkbox and RadioButton Styling                                          */
+/*****************************************************************************/
+
+input[type="checkbox"], input[type="radio"] {
+    -webkit-appearance: none;
+    -webkit-appearance: none;
+            appearance: none;
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    cursor: pointer;
+    vertical-align: bottom;
+    background: white;
+    border: 1px solid gainsboro;
+    -webkit-border-radius: 1px;
+       -moz-border-radius: 1px;
+            border-radius: 1px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+input[type="checkbox"]:checked, input[type="radio"]:checked {
+    background: white;
+}
+input[type="checkbox"] {
+    margin: 1px 0 0;
+}
+input[type="radio"] {
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    width: 15px;
+    height: 15px;
+}
+
+input[type="checkbox"]:checked::after {
+    content: url(/Content/img/checkmark.png);
+    display: block;
+    position: absolute;
+    top: -6px;
+    left: -5px;
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    background: hsl(0, 0%, 40%);
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+}
+
+input[type="checkbox"]:active, input[type="radio"]:active {
+    border-color: hsl(0, 0%, 78%);
+    background: hsl(0, 0%, 92%);
+}
+
+input[type="checkbox"]:hover, input[type="radio"]:hover {
+    border-color: hsl(0, 0%, 78%);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/*****************************************************************************/
+/* Select Styling                                                            */
+/*****************************************************************************/
+.select {
+    position: relative;
+}
+
+.select-header {
+    border-radius: 2px;
+    background-color: hsla(0, 0%, 95%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 93%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 93%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 93%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 93%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 97%, 1), hsla(0, 0%, 93%, 1));
+    border: 1px solid gainsboro;
+    color: hsla(0, 0%, 27%, 1);
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 27px;
+    list-style: none;
+    min-width: 46px;
+    outline: none;
+    padding: 0 24px 0 6px;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.select-header:after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    width: 7px;
+    height: 11px;
+    background: url(/Content/img/select-arrow.png);
+    margin: 8px 12px;
+}
+
+.select-header:hover {
+    background-color: hsla(0, 0%, 97%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.1);
+    border-color: hsl(0, 0%, 78%);
+    color: hsl(0, 0%, 20%);
+}
+
+.select-header:active {
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    background-color: hsla(0, 0%, 93%, 1);
+    background-image: -webkit-linear-gradient(top, hsl(0, 0%, 93%), hsla(0, 0%, 88%, 1));
+    background-image:    -moz-linear-gradient(top, hsl(0, 0%, 93%), hsla(0, 0%, 88%, 1));
+    background-image:     -ms-linear-gradient(top, hsl(0, 0%, 93%), hsla(0, 0%, 88%, 1));
+    background-image:      -o-linear-gradient(top, hsl(0, 0%, 93%), hsla(0, 0%, 88%, 1));
+    background-image:         linear-gradient(to bottom, hsl(0, 0%, 93%), hsla(0, 0%, 88%, 1));
+    border: 1px solid hsl(0, 0%, 80%);
+    color: hsl(0, 0%, 20%);
+    z-index: 2;
+}
+.select-options {
+    position: absolute;
+    max-height: 150px;
+    overflow: auto;
+    display: none;
+    background: white;
+    border: solid 1px hsla(0, 0%, 0%, 0.2);
+    box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.2);
+    left: 3px;
+    display: none;
+    z-index: 1000;
+    top: 0px;
+    min-width: 100%;
+    padding: 0 0 6px;
+}
+
+.select-option {
+    padding: 6px 7em 6px 30px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.select-option:hover, .select-option-hover {
+    background: hsla(0, 0%, 93%, 1);
+}
+
+.select.opened .select-options {
+    display: inline-block;
+}
+
+
+
+
+.actions-bar {
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+.request-versions {
+    display: inline-block;
+    float: right;
+    font-size: 0px;
+}
+.request-versions:after {
+    content: "";
+    clear: both;
+}
+.actions-bar .button {
+    margin: 0px;
+}
+.request-versions .button {
+    margin: 0px;
+    font-size: 22px;
+    padding: 0px 15px;
+    color: hsla(0, 0%, 50%, 1);
+    min-width: 0;
+}
+.request-versions .button[disabled] {
+    color: hsla(0, 0%, 70%, 1);
+}
+
+
+.delete-form {
+    display: inline-block;
+}
+
+.security-action, .communication-action {
+    margin: 1.5em 0 0;
+    padding: 1.5em;
+    background: hsla(0, 0%, 99%, 1);
+    box-shadow: 0px 1px 3px hsla(0, 0%, 0%, 0.35);
+    border-radius: 4px;
+}
+
+.security-action-status, .communication-action-status {
+    margin: 0 0 1em;
+}
+
+.security-action-status strong.approved, .communication-action-status strong.completed {
+    color: hsla(120, 100%, 22%, 1);
+}
+
+.security-action-status strong.rejected {
+    color: hsla(0, 100%, 40%, 1);
+}
+
+.notes em, .security-action-status em, .communication-action-status em {
+    display: block;
+    font-size: 0.9em;
+    margin: 2em 0 0 1.5em;
+    color: hsla(0, 0%, 40%, 1);
+    border-left: solid 4px hsla(0, 0%, 70%, 1);
+    padding: 0.2em 1em;
+}
+
+.form-element.security-vlan {
+    margin: 1.5em 0;
+}
+
+.switch-interface .check-label {
+    float: right;
+}
+
+.form-element.switch-interface input[type=text] {
+    width: 30%;
+    display: inline-block;
+}
+
+.action-result {
+    font-size: 1.5em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -0.75em;
+}
+
+.help-button {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 6px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background-color: hsla(0, 0%, 94%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 98%, 1) 20%, hsla(0, 0%, 90%, 1) 70%, hsla(0, 0%, 98%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 98%, 1) 20%, hsla(0, 0%, 90%, 1) 70%, hsla(0, 0%, 98%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 98%, 1) 20%, hsla(0, 0%, 90%, 1) 70%, hsla(0, 0%, 98%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 98%, 1) 20%, hsla(0, 0%, 90%, 1) 70%, hsla(0, 0%, 98%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 98%, 1) 20%, hsla(0, 0%, 90%, 1) 70%, hsla(0, 0%, 98%, 1));
+    border: solid 1px hsla(0, 0%, 80%, 1);
+    border-bottom-left-radius: 5px;
+    box-shadow: -5px 0px 10px -5px hsla(0, 0%, 50%, 0.4), 0px 5px 10px -5px hsla(0, 0%, 50%, 0.4);
+    z-index: 0;
+    padding: 10px 25px;
+    color: hsla(0, 0%, 40%, 1);
+    text-shadow: 0px 1px 0px hsla(0, 0%, 100%, 1);
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    font-weight: bold;
+    -webkit-transition: opacity 0.5s, border-color 0.5s;
+       -moz-transition: opacity 0.5s, border-color 0.5s;
+        -ms-transition: opacity 0.5s, border-color 0.5s;
+         -o-transition: opacity 0.5s, border-color 0.5s;
+            transition: opacity 0.5s, border-color 0.5s;
+    vertical-align: top;
+}
+
+.request-policy:hover .help-button {
+    opacity: 1;
+}
+
+.help-button:hover {
+    border-color: hsla(0, 0%, 60%, 1);
+}
+
+.help-button .help-arrow {
+    font-size: 25px;
+    vertical-align: top;
+    line-height: 12px;
+    display: inline-block;
+    padding: 0;
+    margin: -1px 2px 0px 0px;
+    font-weight: normal;
+}
+
+.policy-help-wrapper {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
+    text-align: center;
+}
+
+.policy-help-container {
+    padding: 1em 2em;
+    background-color: hsla(0, 0%, 7%, 1);
+    background: -webkit-linear-gradient(top, hsla(0, 0%, 7%, 1), hsla(0, 0%, 7%, 0.9) 70px, hsla(0, 0%, 10%, 0.9));
+    background:    -moz-linear-gradient(top, hsla(0, 0%, 7%, 1), hsla(0, 0%, 7%, 0.9) 70px, hsla(0, 0%, 10%, 0.9));
+    background:     -ms-linear-gradient(top, hsla(0, 0%, 7%, 1), hsla(0, 0%, 7%, 0.9) 70px, hsla(0, 0%, 10%, 0.9));
+    background:      -o-linear-gradient(top, hsla(0, 0%, 7%, 1), hsla(0, 0%, 7%, 0.9) 70px, hsla(0, 0%, 10%, 0.9));
+    background:         linear-gradient(to bottom, hsla(0, 0%, 7%, 1), hsla(0, 0%, 7%, 0.9) 70px, hsla(0, 0%, 10%, 0.9));
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    z-index: -1;
+    color: hsla(0, 0%, 70%, 1);
+    box-shadow: 0px 1px 7px hsla(0, 0%, 7%, 0.9);
+    border-bottom: solid 1px hsla(0, 0%, 5%, 1);
+    position: absolute;
+    text-align: left;
+    display: inline-block;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0s linear 0.2s, all 0.2s;
+       -moz-transition: visibility 0s linear 0.2s, all 0.2s;
+        -ms-transition: visibility 0s linear 0.2s, all 0.2s;
+         -o-transition: visibility 0s linear 0.2s, all 0.2s;
+            transition: visibility 0s linear 0.2s, all 0.2s;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.policy-help-wrapper.opened .policy-help-container {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition-delay: 0s;
+}
+
+.policy-help-container .ip-help-box,
+.policy-help-container .subnet-help-box {
+    display: inline-block;
+}
+
+
+.policy-help-container h3 {
+    color: hsla(0, 0%, 70%, 1);
+}
+
+.policy-help-container h4 {
+    font-size: 15px;
+}
+
+.policy-help-container td, .policy-help-container th {
+    vertical-align: top;
+    padding: 3px 20px;
+    text-align: left;
+}
+
+.policy-help-container p {
+    margin: 0;
+}

@@ -1,0 +1,48 @@
+﻿@model IPRequestForm.ViewModels.ViewModelBase
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="account-wrapper">
+    <div class="account-box settings-box">
+        <h2>
+            Settings</h2>
+        <form method="post" action="/settings">
+        <div class="form-element">
+            <label class="email">
+                <strong>Email</strong>
+                <div class="form-value">@Model.User.Username@@cibeg.com</div>
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>First Name</strong>
+                <input name="firstName" type="text" value="@Model.User.FirstName" />
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>Last Name</strong>
+                <input name="lastName" type="text" value="@Model.User.LastName"/>
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>New Password</strong>
+                <input name="password" type="password" />
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>Confirm Password</strong>
+                <input name="confirmPassword" type="password" />
+            </label>
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="error-message">@ViewBag.ErrorMessage</div>
+            }
+        </div>
+        <input type="submit" class="button submit-button" value="Save Changes" />
+        </form>
+    </div>
+</div>

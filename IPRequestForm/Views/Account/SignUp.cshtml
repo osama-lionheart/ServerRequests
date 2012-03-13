@@ -1,0 +1,61 @@
+﻿@model IPRequestForm.ViewModels.SignUpViewModel
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="account-wrapper">
+    <div class="account-box register-box">
+        <h2>
+            Sign Up</h2>
+        <form method="post" action="/signup">
+        <div class="form-element">
+            <label class="email">
+                <strong>Email</strong>
+                <input name="username" type="text" />
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>First Name</strong>
+                <input name="firstName" type="text" />
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>Last Name</strong>
+                <input name="lastName" type="text" />
+            </label>
+        </div>
+        <div class="form-element">
+            <label>
+                <strong>Departments</strong>
+                <select name="departmentId">
+                    <option value="0">Select...</option>
+                    @foreach (var dept in Model.Departments)
+                    {
+                        <option value="@dept.Id">@dept.Name</option>
+                    }
+                </select>
+            </label>
+        </div>
+        <div class="form-element roles">
+            <label>
+                <strong>Roles</strong></label>
+            @foreach (var role in Model.Roles)
+            {
+                <div>
+                    <label class="check-label">
+                        <input name="roleNames" type="checkbox" value="@role" />
+                        <strong>@role</strong>
+                    </label>
+                </div>
+            }
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="error-message">@ViewBag.ErrorMessage</div>
+        }
+        <input type="submit" class="button submit-button" value="Sign Up" />
+        </form>
+    </div>
+</div>

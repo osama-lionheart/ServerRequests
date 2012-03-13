@@ -1,0 +1,55 @@
+﻿@model IPRequestForm.ViewModels.RequestsViewModel
+
+@helper GetCurrentUrl(int pageNo) {
+    switch (Model.RequestFilter)
+    {
+        case IPRequestForm.Controllers.RequestFilters.All:
+            @:/request/all/@pageNo
+            break;
+        case IPRequestForm.Controllers.RequestFilters.Pending:
+            @:/request/pending/@pageNo
+            break;
+        case IPRequestForm.Controllers.RequestFilters.Approved:
+            @:/request/approved/@pageNo
+            break;
+        case IPRequestForm.Controllers.RequestFilters.Rejected:
+            @:/request/rejected/@pageNo
+            break;
+        case IPRequestForm.Controllers.RequestFilters.Completed:
+            @:/request/completed/@pageNo
+            break;
+        case IPRequestForm.Controllers.RequestFilters.Deleted:
+            @:/request/deleted/@pageNo
+            break;
+        case IPRequestForm.Controllers.RequestFilters.Search:
+            @:/search?q=@Model.Query&pageNo=@pageNo
+            break;
+    }
+}
+
+@if (Model.TotalPages > 1)
+{
+    <div class="pagination-container">
+        @if (Model.PreviousPage.HasValue)
+        {
+            if (Model.PreviousPage > 1)
+            {
+                <a href="@GetCurrentUrl(1)">First</a>
+            }
+        
+            <a href="@GetCurrentUrl(@Model.PreviousPage.Value)">Previous</a>
+        }
+    
+        <span class="page-number">@Model.CurrentPage</span> of <span class="total-pages">@Model.TotalPages</span>
+
+        @if (Model.NextPage.HasValue)
+        {
+            <a href="@GetCurrentUrl(@Model.NextPage.Value)">Next</a>
+        
+            if (Model.NextPage < Model.TotalPages)
+            {
+                <a href="@GetCurrentUrl(@Model.TotalPages)">Last</a>
+            }
+        }
+    </div>
+}

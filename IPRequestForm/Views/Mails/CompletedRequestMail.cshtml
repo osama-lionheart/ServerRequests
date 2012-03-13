@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>CompletedRequestMail</title>
+</head>
+<body>
+    <div>
+        <a href="/@Model.User.Id">@Model.User.FirstName, @Model.User.LastName</a> has completed an IP request form:<br />
+        Vlan: <text>VLAN</text>@Model.Vlan.Number @Model.Vlan.Name<br />
+        Server IP Address: @Model.IPAddress<br />
+        <a href="@Model.Url">@Model.Url</a>
+    </div>
+</body>
+</html>

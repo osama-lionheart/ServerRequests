@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82D76BFF-4E56-44BA-9385-223B6CE49E72}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IPRequestForm</RootNamespace>
+    <AssemblyName>IPRequestForm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AttributeRouting">
+      <HintPath>..\packages\AttributeRouting.1.4\lib\net40\AttributeRouting.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.0.7\lib\net40\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\RazorEngine.3.0.7\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AttributeRouting.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommonFunctions.cs" />
+    <Compile Include="Controllers\CommunicationController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Models\IPRequestFormEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IPRequestFormEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mailer.cs" />
+    <Compile Include="Models\RequestRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Account\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\Request\NewRequestViewMode.cs" />
+    <Compile Include="ViewModels\Request\RequestFormViewModel.cs" />
+    <Compile Include="ViewModels\Request\RequestsViewModel.cs" />
+    <Compile Include="ViewModels\Request\RequestViewModel.cs" />
+    <Compile Include="ViewModels\Request\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\account.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\scrollbars.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\approved.jpg" />
+    <Content Include="Content\img\bg.png" />
+    <Content Include="Content\img\bg2.png" />
+    <Content Include="Content\img\checkmark.png" />
+    <Content Include="Content\img\close-hover.png" />
+    <Content Include="Content\img\close-press.png" />
+    <Content Include="Content\img\close.png" />
+    <Content Include="Content\img\completed.jpg" />
+    <Content Include="Content\img\curtain-dark.png" />
+    <Content Include="Content\img\curtain-dark2.png" />
+    <Content Include="Content\img\curtain-gray.png" />
+    <Content Include="Content\img\curtain-light.png" />
+    <Content Include="Content\img\datepicker\custom_b.png" />
+    <Content Include="Content\img\datepicker\custom_bl.png" />
+    <Content Include="Content\img\datepicker\custom_br.png" />
+    <Content Include="Content\img\datepicker\custom_l.png" />
+    <Content Include="Content\img\datepicker\custom_r.png" />
+    <Content Include="Content\img\datepicker\custom_t.png" />
+    <Content Include="Content\img\datepicker\custom_tl.png" />
+    <Content Include="Content\img\datepicker\custom_tr.png" />
+    <Content Include="Content\img\datepicker\datepicker_b.png" />
+    <Content Include="Content\img\datepicker\datepicker_bl.png" />
+    <Content Include="Content\img\datepicker\datepicker_br.png" />
+    <Content Include="Content\img\datepicker\datepicker_l.png" />
+    <Content Include="Content\img\datepicker\datepicker_r.png" />
+    <Content Include="Content\img\datepicker\datepicker_t.png" />
+    <Content Include="Content\img\datepicker\datepicker_tl.png" />
+    <Content Include="Content\img\datepicker\datepicker_tr.png" />
+    <Content Include="Content\img\datepicker\field.png" />
+    <Content Include="Content\img\logo.gif" />
+    <Content Include="Content\img\pending.jpg" />
+    <Content Include="Content\img\rejected.jpg" />
+    <Content Include="Content\img\search-icon-focus.png" />
+    <Content Include="Content\img\search-icon.png" />
+    <Content Include="Content\img\select-arrow.png" />
+    <Content Include="Content\js\datepicker.js" />
+    <Content Include="Content\js\forms.js" />
+    <Content Include="Content\js\jquery.textchange.min.js" />
+    <Content Include="Content\js\script.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\UserRequests.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\CreateNewRequest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\UserRequest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\AccountLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\IPRequestFormEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IPRequestFormEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\PasswordChangeSuccess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\PasswordResetNotification.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\SignUp.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Mails\ChangePassword.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\TopBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Settings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\RequestsPagination.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\RequestForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mails\NewRequestMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mails\UpdateRequestMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mails\ApprovedRequestMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mails\RejectedRequestMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mails\CompletedRequestMail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\RequestPolicyHelp.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\MainLayout.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8080</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:80/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

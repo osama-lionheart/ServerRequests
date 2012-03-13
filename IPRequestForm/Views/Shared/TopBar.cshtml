@@ -1,0 +1,87 @@
+﻿@using IPRequestForm.Models;
+<div class="top-bar-wrapper">
+    <div class="advanced-search-box">
+        <div class="advanced-search-box-content">
+            <h1>
+                Search for a Request</h1>
+            <form action="#" method="POST">
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <label for="field1">
+                            Field1</label>
+                    </div>
+                    <div class="table-cell">
+                        <input id="field1" type="text" name="field1" />
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">
+                        <label for="field2">
+                            Field2</label>
+                    </div>
+                    <div class="table-cell">
+                        <input id="field2" type="text" name="field2" />
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">
+                        <label for="field3">
+                            Field3</label>
+                    </div>
+                    <div class="table-cell">
+                        <input id="field3" type="text" name="field3" />
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">
+                        <label for="field4">
+                            Field1</label>
+                    </div>
+                    <div class="table-cell">
+                        <input id="field4" type="text" name="field4" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="Search" class="button submit-button" tabindex="0" />
+            </form>
+        </div>
+    </div>
+    <div class="top-bar">
+        <div class="table fill" style="height: auto;">
+            <div class="table-row fill">
+                <div class="table-cell left-panel">
+                </div>
+                <div class="table-cell main-panel">
+                    <div class="top-bar-content">
+                        <div class="advanced-search">
+                            <form action="/search" method="get">
+                            <input type="search" name="q" class="search-box" placeholder="Search" tabindex="0" value="@((Model is IPRequestForm.ViewModels.RequestsViewModel) ? (Model as IPRequestForm.ViewModels.RequestsViewModel).Query : "")" />
+                            </form>
+                            <div class="advanced-search-arrow">▼</div>
+                        </div>
+                        <div class="user-info-box">
+                            <div class="user-info">
+                                <span class="user-name">@((Model as IPRequestForm.ViewModels.ViewModelBase).User.FirstName) @((Model as IPRequestForm.ViewModels.ViewModelBase).User.LastName)</span><div
+                                        class="user-arrow">▼</div>
+                            </div>
+                            <div class="user-menu">
+                                <ul>
+                                @if (Roles.IsUserInRole("Administrators"))
+                                {
+                                    <li><a href="/signup">Register</a></li>
+                                }
+                                    <li><a href="/settings">Settings</a></li>
+                                    <li><a href="/logout">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell right-panel">
+                </div>
+            </div>
+        </div>
+        @Html.Partial("RequestPolicyHelp")
+    </div>
+</div>

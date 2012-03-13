@@ -1,0 +1,1172 @@
+.table {
+    display: table;
+}
+.table-row {
+    display: table-row;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: top;
+}
+.table.fill, .table-row.fill {
+    height: 100%;
+}
+.table.fill, .table-cell.fill {
+    width: 100%;
+}
+/*****************************************************************************/
+html, body {
+    margin: 0px;
+    padding: 0px;
+    background: hsla(0, 0%, 100%, 1);
+    font-family: arial,sans-serif;
+    font-size: 13px;
+    position: absolute;
+    height: 100%;
+    min-width: 100%;
+}
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    height: 100%;
+}
+
+ul, ol {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+a {
+    display: inline-block;
+}
+
+a, a:focus {
+    outline: 0;
+}
+/*****************************************************************************/
+.top-bar-wrapper {
+    position: fixed;
+    z-index: 9999999;
+    width: 100%;
+}
+.top-bar-wrapper.open {
+    /*position: relative;*/
+}
+/*****************************************************************************/
+.advanced-search-box {
+    color: hsla(0, 0%, 80%, 0.8);
+    background: url(/Content/img/curtain-dark2.png), hsla(0, 0%, 10%, 1);
+    -webkit-transition: margin-top 0.5s, visibility 0s 0.5s;
+       -moz-transition: margin-top 0.5s, visibility 0s 0.5s;
+        -ms-transition: margin-top 0.5s, visibility 0s 0.5s;
+         -o-transition: margin-top 0.5s, visibility 0s 0.5s;
+            transition: margin-top 0.5s, visibility 0s 0.5s;
+    overflow: hidden;
+    margin-top: -244px;
+    visibility: hidden;
+    display: none;
+}
+.advanced-search-box-content {
+    text-align: center;
+    padding: 10px 50px;
+}
+.advanced-search-box input[type=text] {
+    background: hsla(0, 0%, 100%, 0.5);
+    border: solid 1px hsla(0, 0%, 0%, 0.5);
+    border-radius: 2px;
+    padding: 3px 0px 3px 6px;
+    outline-color: hsla(215, 80%, 50%, 0.7);
+    -webkit-transition: background-color 0.3s;
+       -moz-transition: background-color 0.3s;
+        -ms-transition: background-color 0.3s;
+         -o-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+    vertical-align: middle;
+}
+.advanced-search-box input[type=text]:focus {
+    background: hsla(0, 0%, 100%, 0.8);
+}
+.advanced-search-box label {
+    padding: 10px;
+    vertical-align: middle;
+    display: block;
+    text-align: right;
+}
+.advanced-search-box .table-cell {
+    vertical-align: middle;
+}
+.advanced-search-box form {
+    display: inline-block;
+}
+.advanced-search-box h1 {
+    font-size: 2em;
+    margin: 10px;
+}
+/*****************************************************************************/
+.top-bar {
+    top: 0px;
+    width: 100%;
+    height: 40px;
+    background-color: hsla(0, 0%, 7%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 20%, 1), hsla(0, 0%, 7%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 20%, 1), hsla(0, 0%, 7%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 20%, 1), hsla(0, 0%, 7%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 20%, 1), hsla(0, 0%, 7%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 20%, 1), hsla(0, 0%, 7%, 1));
+    box-shadow: 0px 3px 4px -2px hsla(0, 0%, 7%, 0.9);
+    border-bottom: solid 1px hsla(0, 0%, 5%, 1);
+}
+.top-bar-content {
+    height: 40px;
+}
+.top-bar-wrapper.open .advanced-search-box {
+    margin-top: 0px;
+    visibility: visible;
+    -webkit-transition-delay: 0s;
+       -moz-transition-delay: 0s;
+        -ms-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
+}
+.search-box {
+    background: url(/Content/img/search-icon.png) no-repeat 6px 6px, hsla(0, 0%, 40%, 1.0);
+    border: solid 1px hsla(0, 0%, 0%, 1.0);
+    box-shadow: inset 1px 1px 7px 0px transparent, 0px 1px 0px hsla(0, 0%, 30%, 1.0);
+    border-radius: 2em;
+    padding: 4px 25px 2px 22px;
+    width: 120px;
+    outline: none;
+    color: hsla(0, 0%, 85%, 1.0);
+    -webkit-transition-property: width, background, color, border, box-shadow;
+       -moz-transition-property: width, background, color, border, box-shadow;
+        -ms-transition-property: width, background, color, border, box-shadow;
+         -o-transition-property: width, background, color, border, box-shadow;
+            transition-property: width, background, color, border, box-shadow;
+    -webkit-transition-duration: 0.4s;
+       -moz-transition-duration: 0.4s;
+        -ms-transition-duration: 0.4s;
+         -o-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+    -webkit-appearance: none;
+    background-size: 13px 13px;
+}
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;  
+}
+.search-box::-webkit-input-placeholder {
+    color: hsla(0, 0%, 70%, 1.0);
+    -webkit-transition: color 0.4s;
+       -moz-transition: color 0.4s;
+        -ms-transition: color 0.4s;
+         -o-transition: color 0.4s;
+            transition: color 0.4s;
+}
+.search-box:focus::-webkit-input-placeholder {
+    color: hsla(0, 0%, 40%, 1.0);
+}
+.search-box:focus {
+    width: 200px;
+    background-color: hsla(0, 0%, 100%, 0.8);
+    background-image: url(/Content/img/search-icon-focus.png);
+    color: black;
+    box-shadow: inset 1px 1px 7px 0px hsla(0, 0%, 0%, 0.3), 0px 1px 0px hsla(0, 0%, 30%, 1.0);
+}
+.open .search-box, .open .search-box:focus {
+    width: 55px;
+}
+.open .search-box:focus::-webkit-input-placeholder {
+    color: hsla(0, 0%, 70%, 1.0);
+}
+.open .search-box {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: inset 1px 1px 7px 0px hsla(0, 0%, 0%, 0), 0px 1px 0px hsla(0, 0%, 30%, 0);
+    padding-right: 15px;
+}
+.advanced-search {
+    display: inline-block;
+    color: hsla(0, 0%, 80%, 0.8);
+    padding: 8px 10px 3px;
+    font-size: 13px;
+    text-shadow: 0px 1px 2px hsla(0, 0%, 0%, 1);
+    border: solid 1px transparent;
+    border-top: none;
+    border-bottom-width: 3px;
+    vertical-align: top;
+    position: relative;
+    box-shadow: inset 0px -16px 20px -16px hsla(0, 0%, 20%, 0), 2px 0px 0px -1px hsla(0, 0%, 50%, 0), -2px 0px 0px -1px hsla(0, 0%, 50%, 0);
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+    -webkit-transition-property: background, border-color, box-shadow;
+       -moz-transition-property: background, border-color, box-shadow;
+        -ms-transition-property: background, border-color, box-shadow;
+         -o-transition-property: background, border-color, box-shadow;
+            transition-property: background, border-color, box-shadow;
+    -webkit-transition-duration: 0.4s;
+       -moz-transition-duration: 0.4s;
+        -ms-transition-duration: 0.4s;
+         -o-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+}
+.advanced-search-arrow {
+    display: none;
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    font-size: 9px;
+    cursor: pointer;
+    padding: 8px 8px 8px;
+}
+.open .advanced-search-arrow {
+    -webkit-transform: rotate(180deg);
+       -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+         -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+}
+.open .advanced-search {
+    background: url(/Content/img/curtain-dark2.png), hsla(0, 0%, 10%, 1);
+    /*background: -webkit-linear-gradient(top, hsla(0, 0%, 10%, 1) 25%, hsla(0, 0%, 13%, 1));*/
+    box-shadow: inset 0px -16px 20px -16px hsla(0, 0%, 20%, 1), 2px 0px 0px -1px hsla(0, 0%, 50%, 0.15), -2px 0px 0px -1px hsla(0, 0%, 50%, 0.15);
+    border-color: hsla(0, 0%, 0%, 1);
+    border-bottom-color: hsla(15, 80%, 50%, 0.7);
+}
+/*****************************************************************************/
+.user-info-box {
+    position: relative;
+    float: right;
+    display: inline-block;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+.user-info {
+    color: hsla(0, 0%, 80%, 0.8);
+    padding: 10px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    text-shadow: 0px 1px 2px hsla(0, 0%, 0%, 1);
+    border: solid 1px transparent;
+    box-shadow: inset 0px 0px 7px hsla(0, 0%, 0%, 0), 2px 0px 0px -1px hsla(0, 0%, 50%, 0), -2px 0px 0px -1px hsla(0, 0%, 50%, 0);
+    -webkit-transition: background 0.2s, border-color 0.2s, border-width 0s linear 0.2s, padding 0s linear 0.2s, box-shadow 0.2s;
+       -moz-transition: background 0.2s, border-color 0.2s, border-width 0s linear 0.2s, padding 0s linear 0.2s, box-shadow 0.2s;
+        -ms-transition: background 0.2s, border-color 0.2s, border-width 0s linear 0.2s, padding 0s linear 0.2s, box-shadow 0.2s;
+         -o-transition: background 0.2s, border-color 0.2s, border-width 0s linear 0.2s, padding 0s linear 0.2s, box-shadow 0.2s;
+            transition: background 0.2s, border-color 0.2s, border-width 0s linear 0.2s, padding 0s linear 0.2s, box-shadow 0.2s;
+}
+.user-info:hover, .opened .user-info {
+    background: hsla(0, 0%, 35%, 0.2);
+    color: hsla(0, 0%, 85%, 0.8);
+    box-shadow: inset 0px 0px 7px hsla(0, 0%, 0%, 0.5), 2px 0px 0px -1px hsla(0, 0%, 50%, 0.15), -2px 0px 0px -1px hsla(0, 0%, 50%, 0.15);
+    border-color: hsla(0, 0%, 5%, 1);
+}
+.opened .user-info {
+    box-shadow: inset 0px 10px 20px -10px hsla(0, 0%, 0%, 1), 2px 0px 0px -1px hsla(0, 0%, 50%, 0.15), -2px 0px 0px -1px hsla(0, 0%, 50%, 0.15);
+    background: hsla(0, 0%, 13%, 1);
+    border-top: solid 3px hsla(15, 80%, 50%, 0.7);
+    padding-top: 8px;
+    -webkit-transition-delay: 0s;
+       -moz-transition-delay: 0s;
+        -ms-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
+}
+.user-info-box .user-image {
+    vertical-align: middle;
+    border: solid 1px hsla(0, 0%, 0%, 1.0);
+    box-shadow: 0px 1px 0px hsla(0, 0%, 30%, 1.0);
+    margin-right: 10px;
+}
+.user-info-box .user-name {
+    vertical-align: middle;
+}
+.user-info-box .user-arrow {
+    font-size: 9px;
+    vertical-align: top;
+    padding: 6px 0px 0px 5px;
+    display: inline-block;
+}
+.user-info-box .user-menu {
+    display: none;
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    right: 0px;
+    background: hsla(0, 0%, 13%, 1);
+    color: white;
+    border-radius: 0px 0px 5px 5px;
+    border: solid 1px hsla(0, 0%, 5%, 1);
+    border-top: none;
+    box-shadow: 1px 1px 2px 0px hsla(0, 0%, 7%, 0.5), -1px 1px 2px 0px hsla(0, 0%, 7%, 0.5);
+    margin-top: -3px;
+    padding-top: -3px;
+    z-index: 1000;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0s linear 0.2s, all 0.2s;
+       -moz-transition: visibility 0s linear 0.2s, all 0.2s;
+        -ms-transition: visibility 0s linear 0.2s, all 0.2s;
+         -o-transition: visibility 0s linear 0.2s, all 0.2s;
+            transition: visibility 0s linear 0.2s, all 0.2s;
+}
+.user-info-box.opened .user-menu {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition-delay: 0s;
+       -moz-transition-delay: 0s;
+        -ms-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
+}
+.user-info-box  .user-menu li {
+    padding: 5px 15px;
+}
+.user-info-box .user-menu li:hover {
+    background: hsla(0, 0%, 0%, 0.3);
+}
+.user-info-box .user-menu li a {
+    color: hsla(0, 0%, 100%, 0.7);
+    text-decoration: none;
+    display: block;
+}
+/*****************************************************************************/
+header {
+    background-color: hsla(0, 0%, 97%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 95%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 95%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 95%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 95%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 100%, 1), hsla(0, 0%, 95%, 1));
+    border-bottom: solid 1px hsla(0, 0%, 87%, 1);
+    box-shadow: inset 0px -1px 0px white, 0px 3px 5px hsla(0, 0%, 60%, 0.2);
+    position: relative;
+    z-index: 0;
+    text-align: center;
+    padding: 40px 0px 40px 0px;
+    font-family: "Times New Roman";
+}
+.logo-wrapper {
+    float:left;
+    margin: 22px 0 0 15px;
+}
+.logo {
+    display: inline-block;
+    background: url(/Content/img/logo.gif);
+    width: 91px;
+    height: 39px;
+}
+.title-wrapper {
+    text-align: center;
+    padding-right: 106px;
+}
+.title {
+    position: relative;
+    background-color: hsla(0, 0%, 98%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 100%, 1), hsla(0, 0%, 94%, 1));
+    border: solid 1px hsla(0, 0%, 80%, 1);
+    box-shadow: inset 0px -1px 0px hsla(0, 0%, 100%, 0.8), 0px 1px 2px -1px hsla(0, 0%, 0%, 0.1), 0px 0px 2px hsla(0, 0%, 30%, 0.2);
+    border-radius: 3px;
+    margin: 17px;
+    display: inline-block;
+    padding: 5px 70px;
+    font-size: 2em;
+    color: hsla(0, 0%, 45%, 1);
+    text-shadow: 1px 1px 0px white;
+}
+.title:before, .title:after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    height: 55%;
+    bottom: 15px;
+    left: 15px;
+    width: 70%;
+    max-width: 300px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    -webkit-transform: skew(-15deg) rotate(-6deg);
+       -moz-transform: skew(-15deg) rotate(-6deg);
+        -ms-transform: skew(-15deg) rotate(-6deg);
+         -o-transform: skew(-15deg) rotate(-6deg);
+            transform: skew(-15deg) rotate(-6deg);
+}
+.title:after {
+    -webkit-transform: skew(15deg) rotate(6deg);
+       -moz-transform: skew(15deg) rotate(6deg);
+        -ms-transform: skew(15deg) rotate(6deg);
+         -o-transform: skew(15deg) rotate(6deg);
+            transform: skew(15deg) rotate(6deg);
+    right: 15px;
+    left: auto;
+}
+/*****************************************************************************/
+.left-panel, .right-panel {
+    width: 20%;
+    min-width: 150px;
+    max-width: 250px;
+}
+.main-panel {
+    min-width: 350px;
+}
+/*****************************************************************************/
+.main {
+    text-align: center;
+    background: hsla(0, 0%, 100%, 1);
+}
+.content-wrapper {
+    position: relative;
+    text-align: center;
+    height: 100%;
+}
+.content-background {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: -40px;
+    bottom: 0px;
+    padding: 20px 20px 0px;
+    margin: -20px -20px 0px;
+    z-index: 0;
+    overflow: hidden;
+}
+.inner-content-background {
+    height: 100%;
+    background-color: hsla(0, 0%, 98%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 98%, 1) 150px);
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 98%, 1) 150px);
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 98%, 1) 150px);
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 98%, 1) 150px);
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 95%, 1), hsla(0, 0%, 98%, 1) 150px);
+    border: solid 1px hsla(0, 0%, 80%, 1);
+    border-bottom: none;
+    box-shadow: inset 0px 0px 1px 1px hsla(0, 0%, 100%, 1), 5px 0px 10px -5px hsla(0, 0%, 50%, 0.3), -5px 0px 10px -5px hsla(0, 0%, 50%, 0.3), 0px -5px 10px -5px hsla(0, 0%, 50%, 0.3);
+    border-radius: 20px 20px 0px 0px;
+}
+.inner-content-background:before, .inner-content-background:after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    height: 150px;
+    top: 55px;
+    left: 35px;
+    width: 40px;
+    box-shadow: -10px -10px 10px hsla(0, 0%, 0%, 0.3);
+    -webkit-transform: skew(10deg) rotate(0deg);
+       -moz-transform: skew(10deg) rotate(0deg);
+        -ms-transform: skew(10deg) rotate(0deg);
+         -o-transform: skew(10deg) rotate(0deg);
+            transform: skew(10deg) rotate(0deg);
+    border-radius: 15px;
+    background: hsla(0, 0%, 0%, 0.3);
+}
+.inner-content-background:after {
+    -webkit-transform: skew(-10deg) rotate(0deg);
+       -moz-transform: skew(-10deg) rotate(0deg);
+        -ms-transform: skew(-10deg) rotate(0deg);
+         -o-transform: skew(-10deg) rotate(0deg);
+            transform: skew(-10deg) rotate(0deg);
+    left: auto;
+    right: 35px;
+    box-shadow: 10px -10px 10px hsla(0, 0%, 0%, 0.3);
+}
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+}
+.requests-wrapper, .request-wrapper {
+    padding: 30px;
+    padding-top: 0px;
+}
+/*****************************************************************************/
+footer {
+    background: hsla(0, 0%, 95%, 1);
+    box-shadow: inset 0px 4px 8px -2px hsla(0, 0%, 30%, 0.2);
+    border-top: solid 1px hsla(0, 0%, 80%, 1);
+    margin: 0px 0px;
+    padding: 40px;
+    color: hsla(0, 0%, 60%, 1);
+    text-shadow: 1px 1px 1px hsla(0, 0%, 100%, 1);
+    text-align: center;
+}
+
+/*****************************************************************************/
+.panel {
+    border: solid 1px hsla(0, 0%, 80%, 1);
+    border-radius: 9px 0px 0px 0px;
+    color: hsla(0, 0%, 30%, 1);
+    font-weight: bold;
+    box-shadow: 0px 2px 5px 1px hsla(0, 0%, 40%, 0.3);
+    position: relative;
+    z-index: 1;
+}
+.panel:before, .panel:after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    height: 55%;
+    bottom: 12px;
+    left: 10px;
+    width: 70%;
+    max-width: 300px;
+    box-shadow: 0 10px 15px rgba(0, 10, 0, 0.3);
+    -webkit-transform: skew(-5deg) rotate(-4deg);
+       -moz-transform: skew(-5deg) rotate(-4deg);
+        -ms-transform: skew(-5deg) rotate(-4deg);
+         -o-transform: skew(-5deg) rotate(-4deg);
+            transform: skew(-5deg) rotate(-4deg);
+}
+.panel:after {
+    -webkit-transform: skew(5deg) rotate(4deg);
+       -moz-transform: skew(5deg) rotate(4deg);
+        -ms-transform: skew(5deg) rotate(4deg);
+         -o-transform: skew(5deg) rotate(4deg);
+            transform: skew(5deg) rotate(4deg);
+    right: 10px;
+    left: auto;
+}
+.panel .panel-head {
+    background-color: hsla(0, 0%, 92%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 88%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 88%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 88%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 88%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 97%, 1), hsla(0, 0%, 88%, 1));
+    padding: 5px 10px;
+    border-radius: 7px 0px 0px 0px;
+    border-bottom: solid 1px hsla(0, 0%, 80%, 1);
+    text-align: center;
+    box-shadow: inset 0px -1px 1px hsla(0, 0%, 100%, 0.7);
+}
+.panel .panel-body {
+    background-color: hsla(0, 0%, 96%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 95%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 95%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 95%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 97%, 1), hsla(0, 0%, 95%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 97%, 1), hsla(0, 0%, 95%, 1));
+}
+/*****************************************************************************/
+aside {
+    margin-right: -1px;
+    display: inline-block;
+    float: right;
+    position: relative;
+    text-align: right;
+    border-right: solid 1px hsla(0, 0%, 80%, 1);
+    margin-bottom: 10px;
+}
+aside .panel {
+    text-shadow: 0px 1px 0px hsla(0, 0%, 100%, 1);
+    margin: 0px 0px 0px 20px;
+    box-shadow: 0px -2px 2px -1px hsla(0, 0%, 70%, 0.3), -2px 0px 2px -1px hsla(0, 0%, 70%, 0.3), 0px 2px 2px -1px hsla(0, 0%, 70%, 0.2);
+}
+
+aside .panel:before, aside .panel:after {
+    -webkit-transform: skew(-15deg) rotate(-9deg);
+       -moz-transform: skew(-15deg) rotate(-9deg);
+        -ms-transform: skew(-15deg) rotate(-9deg);
+         -o-transform: skew(-15deg) rotate(-9deg);
+            transform: skew(-15deg) rotate(-9deg);
+}
+aside .panel:after {
+    -webkit-transform: skew(15deg) rotate(9deg);
+       -moz-transform: skew(15deg) rotate(9deg);
+        -ms-transform: skew(15deg) rotate(9deg);
+         -o-transform: skew(15deg) rotate(9deg);
+            transform: skew(15deg) rotate(9deg);
+}
+aside .panel, aside .panel-head {
+    border-right: none;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+aside .panel-body {
+    box-shadow: inset -4px 0px 6px -2px hsla(0, 0%, 60%, 0.2);
+}
+aside ul {
+    text-align: left;
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+aside ul li {
+    padding: 5px 30px 5px 25px;
+    list-style: none;
+}
+
+aside ul li.selected {
+    background: hsla(0, 0%, 100%, 1);
+    border-radius: 0px 0px 0px 0px;
+    border: solid 1px hsla(0, 0%, 82%, 1);
+    border-right: none;
+    margin-right: -1px;
+    margin-left: -10px;
+    padding: 4px 31px 4px 34px;
+    box-shadow: 0px 8px 10px -6px hsla(0, 0%, 60%, 0.6);
+    position: relative;
+}
+
+aside ul li.selected:before {
+    position: absolute;
+    content: "";
+    left: 0px;
+    top: 0px;
+    width: 5px;
+    height: 100%;
+    background: hsla(30, 100%, 60%, 1);
+}
+
+aside ul li.selected:after {
+    position: absolute;
+    content: "";
+    left: -1px;
+    top: 100%;
+    width: 0px;
+    height: 0px;
+    border: solid 5px transparent;
+    border-bottom-width: 3px;
+    border-top: solid 3px hsla(0, 0%, 70%, 1);
+    border-right-color: hsla(0, 0%, 70%, 1);
+}
+
+aside a {
+    color: hsla(220, 60%, 55%, 1);
+    text-decoration: none;
+}
+
+aside a:hover {
+    text-decoration: underline;
+}
+
+aside li.selected a:hover {
+    text-decoration: none;
+}
+
+aside li.selected a {
+    color: hsla(20, 70%, 50%, 1);
+}
+
+/*****************************************************************************/
+/* Button Styling                                                            */
+/*****************************************************************************/
+.button {
+    display: inline-block;
+    padding: 0 8px;
+    height: 27px;
+    line-height: 27px;
+    min-width: 54px;
+    text-align: center;
+    background-color: hsla(0, 0%, 95%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    border: solid 1px hsl(0, 0%, 80%);
+    color: hsla(0, 0%, 30%, 1);
+    text-decoration: none;
+    outline: 0px transparent;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 11px;
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+.button.create-button, .button.submit-button, .button.green-button {
+    border-color: transparent;
+    text-shadow: 0px 1px 1px hsla(0, 0%, 20%, 0.5);
+    color: white;
+}
+.button.create-button {
+    background-color: hsla(7, 63%, 52%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 63%, 52%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 63%, 52%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 63%, 52%, 1));
+    background-image:      -o-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 63%, 52%, 1));
+    background-image:         linear-gradient(to bottom, hsla(7, 71%, 55%, 1), hsla(7, 63%, 52%, 1));
+}
+
+.button.create-button:hover {
+    background-color: hsla(7, 67%, 46%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 67%, 46%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 67%, 46%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 67%, 46%, 1));
+    background-image:      -o-linear-gradient(top, hsla(7, 71%, 55%, 1), hsla(7, 67%, 46%, 1));
+    background-image:         linear-gradient(to bottom, hsla(7, 71%, 55%, 1), hsla(7, 67%, 46%, 1));
+    border: 1px solid hsla(6, 74%, 40%, 1);
+    box-shadow: 0px 1px 1px hsla(0, 0%, 0%, 0.2);
+    text-decoration: none;
+}
+.button.create-button:active {
+    box-shadow: inset 0px 1px 2px hsla(0, 0%, 0%, 0.3);
+    border: solid 1px hsla(7, 70%, 35%, 1);
+    background-color: hsl(6, 74%, 40%);
+    background: -webkit-linear-gradient(top, hsl(7, 71%, 55%), hsl(6, 74%, 40%));
+    background:    -moz-linear-gradient(top, hsl(7, 71%, 55%), hsl(6, 74%, 40%));
+    background:     -ms-linear-gradient(top, hsl(7, 71%, 55%), hsl(6, 74%, 40%));
+    background:      -o-linear-gradient(top, hsl(7, 71%, 55%), hsl(6, 74%, 40%));
+    background:         linear-gradient(to bottom, hsl(7, 71%, 55%), hsl(6, 74%, 40%));
+}
+.button.submit-button {
+    background-color: hsla(217, 99%, 65%, 1);
+    background: -webkit-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 82%, 60%, 1));
+    background:    -moz-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 82%, 60%, 1));
+    background:     -ms-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 82%, 60%, 1));
+    background:      -o-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 82%, 60%, 1));
+    background:         linear-gradient(to bottom, hsla(217, 99%, 65%, 1), hsla(217, 82%, 60%, 1));
+    border-color: hsl(217, 84%, 56%);
+}
+.button.submit-button:hover, .button.submit-button:active {
+    background-color: hsla(217, 80%, 56%, 1);
+    background: -webkit-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 80%, 56%, 1));
+    background:    -moz-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 80%, 56%, 1));
+    background:     -ms-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 80%, 56%, 1));
+    background:      -o-linear-gradient(top, hsla(217, 99%, 65%, 1), hsla(217, 80%, 56%, 1));
+    background:         linear-gradient(to bottom, hsla(217, 99%, 65%, 1), hsla(217, 80%, 56%, 1));
+    border-color: hsl(221, 59%, 45%);
+}
+.button.submit-button:active {
+    box-shadow: inset 0 1px 2px hsla(0, 0%, 0%, 0.3);
+}
+.button.green-button {
+    background-color: hsla(95, 100%, 29%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 27%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 27%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 27%, 1));
+    background-image:      -o-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 27%, 1));
+    background-image:         linear-gradient(to bottom, hsla(95, 100%, 29%, 1), hsla(95, 100%, 27%, 1));
+    border-color: hsl(111, 57%, 26%);
+}
+.button.green-button:hover, .button.green-button:active {
+    background-color: hsla(95, 100%, 25%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 25%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 25%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 25%, 1));
+    background-image:      -o-linear-gradient(top, hsla(95, 100%, 29%, 1), hsla(95, 100%, 25%, 1));
+    background-image:         linear-gradient(to bottom, hsla(95, 100%, 29%, 1), hsla(95, 100%, 25%, 1));
+    border-color: hsl(92, 100%, 19%);
+}
+.button.green-button:active {
+    box-shadow: inset 0 1px 2px hsla(0, 0%, 0%, 0.3);
+}
+
+.button:hover {
+    border-color: hsl(0, 0%, 70%);
+    box-shadow: 0px 1px 1px hsla(0, 0%, 80%, 0.4);
+    background-color: hsla(0, 0%, 97%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 94%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 94%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 94%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 98%, 1), hsla(0, 0%, 94%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 98%, 1), hsla(0, 0%, 94%, 1));
+}
+.button:active {
+    box-shadow: inset 0 1px 2px hsla(0, 0%, 0%, 0.2);
+    background-color: hsla(0, 0%, 95%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 94%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 94%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 94%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 95%, 1), hsla(0, 0%, 94%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 95%, 1), hsla(0, 0%, 94%, 1));
+}
+.button:focus {
+    outline: 0;
+    border-color: hsl(217, 99%, 65%);
+}
+.button.create-button:focus, .button.submit-button:focus, .button.green-button:focus {
+    box-shadow: inset 0 0 0 1px #fff;
+    border-color: transparent;
+}
+
+.button[disabled], .button[disabled]:hover, .button[disabled]:active, .button[disabled]:focus {
+    box-shadow: none;
+    background-color: hsla(0, 0%, 95%, 1);
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:    -moz-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:     -ms-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:      -o-linear-gradient(top, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    background-image:         linear-gradient(to bottom, hsla(0, 0%, 96%, 1), hsla(0, 0%, 94%, 1));
+    border: solid 1px hsl(0, 0%, 80%);
+    color: hsla(0, 0%, 70%, 1);
+    cursor: default;
+}
+
+.button.button-collapse-right {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.button.button-collapse-left {
+    margin-left: -1px !important;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.button.button-collapse-right:hover,
+.button.button-collapse-right:focus,
+.button.button-collapse-right:active {
+    position: relative;
+    z-index: 1
+}
+
+aside a.button.create-button {
+    margin: 25px 20px 20px 20px;
+    padding: 0 14px;
+    text-transform: uppercase;
+}
+
+.close-button {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url(/Content/img/close.png);
+    cursor: pointer;
+    -webkit-transition: background 0.3s, opacity 0.3s;
+       -moz-transition: background 0.3s, opacity 0.3s;
+        -ms-transition: background 0.3s, opacity 0.3s;
+         -o-transition: background 0.3s, opacity 0.3s;
+            transition: background 0.3s, opacity 0.3s;
+}
+
+.close-button:hover {
+    background: url(/Content/img/close-hover.png);
+}
+
+.close-button:active {
+    background: url(/Content/img/close-press.png);
+}
+
+.request .table-cell {
+    vertical-align: middle;
+}
+
+.request {
+    border-bottom: solid 1px hsla(0, 0%, 88%, 1);
+    padding: 10px 0px;
+}
+
+.request .request-result {
+    margin-right: 30px;
+}
+
+.request img {
+    max-height: 80px;
+}
+
+.request .request-app h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.3em 0;
+}
+
+.request .request-app h2 a {
+    color: hsl(205, 100%, 40%);
+    text-decoration: none;
+}
+
+.request .request-app h2 a:hover {
+    text-decoration: underline;
+}
+
+.request .app-types li {
+    display: inline-block;
+    margin: 0px 2px;
+    font-size: 0.8em;
+}
+
+.request .app-types li a {
+    display: inline-block;
+    background: hsla(0, 0%, 90%, 1);
+    color: hsla(0, 0%, 45%, 1);
+    padding: 2px 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.request .app-types li a:hover {
+    background: hsla(0, 0%, 45%, 1);
+    color: hsla(0, 0%, 90%, 1);
+}
+
+.request .badge {
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.request .date {
+    color: hsla(0, 0%, 60%, 1);
+    
+}
+
+a.user-name {
+    color: hsla(210, 100%, 40%, 1);
+    text-decoration: none;
+}
+
+a.user-name:hover {
+    text-decoration: underline;
+}
+
+/*****************************************************************************/
+
+.ribbon {
+    font-size: 1em;
+    text-align: center;
+    margin: 0 0 0 25px;
+    margin-right: -39px;
+    text-shadow: none;
+    color: hsla(0, 0%, 80%, 1);
+    font-weight: bold;
+    padding: 5px 50px 5px 30px;
+    float: right;
+    background-color: hsla(0, 0%, 20%, 1);
+    background-image: -webkit-linear-gradient(left, hsla(0, 0%, 10%, 1) 30%, hsla(0, 0%, 20%, 1) 93%, hsla(0, 0%, 25%, 1), hsla(0, 0%, 10%, 1));
+    background-image:    -moz-linear-gradient(left, hsla(0, 0%, 10%, 1) 30%, hsla(0, 0%, 20%, 1) 93%, hsla(0, 0%, 25%, 1), hsla(0, 0%, 10%, 1));
+    background-image:     -ms-linear-gradient(left, hsla(0, 0%, 10%, 1) 30%, hsla(0, 0%, 20%, 1) 93%, hsla(0, 0%, 25%, 1), hsla(0, 0%, 10%, 1));
+    background-image:      -o-linear-gradient(left, hsla(0, 0%, 10%, 1) 30%, hsla(0, 0%, 20%, 1) 93%, hsla(0, 0%, 25%, 1), hsla(0, 0%, 10%, 1));
+    background-image:         linear-gradient(to right, hsla(0, 0%, 10%, 1) 30%, hsla(0, 0%, 20%, 1) 93%, hsla(0, 0%, 25%, 1), hsla(0, 0%, 10%, 1));
+    box-shadow: 0px 2px 8px -4px hsla(0, 0%, 0%, 0.7);
+    border: solid 1px hsla(0, 0%, 10%, 1);
+    border-left: none;
+    position: relative;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 2px;
+}
+
+.ribbon.light {
+    color: hsla(0, 0%, 30%, 1);
+    border-color: hsla(0, 0%, 80%, 1);
+    background-color: hsla(65, 100%, 92%, 1);
+    background-image: -webkit-linear-gradient(left, hsla(65, 100%, 92%, 1) 30%, hsla(65, 100%, 81%, 1) 93%, hsla(65, 100%, 90%, 1), hsla(45, 100%, 77%, 1));
+    background-image:    -moz-linear-gradient(left, hsla(65, 100%, 92%, 1) 30%, hsla(65, 100%, 81%, 1) 93%, hsla(65, 100%, 90%, 1), hsla(45, 100%, 77%, 1));
+    background-image:     -ms-linear-gradient(left, hsla(65, 100%, 92%, 1) 30%, hsla(65, 100%, 81%, 1) 93%, hsla(65, 100%, 90%, 1), hsla(45, 100%, 77%, 1));
+    background-image:      -o-linear-gradient(left, hsla(65, 100%, 92%, 1) 30%, hsla(65, 100%, 81%, 1) 93%, hsla(65, 100%, 90%, 1), hsla(45, 100%, 77%, 1));
+    background-image:         linear-gradient(to right, hsla(65, 100%, 92%, 1) 30%, hsla(65, 100%, 81%, 1) 93%, hsla(65, 100%, 90%, 1), hsla(45, 100%, 77%, 1));
+}
+
+.ribbon.blue {
+    color: hsla(0, 0%, 100%, 1);
+    border-color: hsla(217, 99%, 50%, 1);
+    background-color: hsla(212, 99%, 47%, 1);
+    background-image: -webkit-linear-gradient(left, hsla(212, 99%, 47%, 1) 30%, hsla(217, 99%, 62%, 1) 93%, hsla(217, 99%, 65%, 1), hsla(217, 99%, 47%, 1));
+    background-image:    -moz-linear-gradient(left, hsla(212, 99%, 47%, 1) 30%, hsla(217, 99%, 62%, 1) 93%, hsla(217, 99%, 65%, 1), hsla(217, 99%, 47%, 1));
+    background-image:     -ms-linear-gradient(left, hsla(212, 99%, 47%, 1) 30%, hsla(217, 99%, 62%, 1) 93%, hsla(217, 99%, 65%, 1), hsla(217, 99%, 47%, 1));
+    background-image:      -o-linear-gradient(left, hsla(212, 99%, 47%, 1) 30%, hsla(217, 99%, 62%, 1) 93%, hsla(217, 99%, 65%, 1), hsla(217, 99%, 47%, 1));
+    background-image:         linear-gradient(to right, hsla(212, 99%, 47%, 1) 30%, hsla(217, 99%, 62%, 1) 93%, hsla(217, 99%, 65%, 1), hsla(217, 99%, 47%, 1));
+}
+
+.ribbon.orange {
+    color: hsla(0, 0%, 100%, 1);
+    border-color: hsla(27, 99%, 50%, 1);
+    background-color: hsla(27, 99%, 52%, 1);
+    background-image: -webkit-linear-gradient(left, hsla(32, 99%, 52%, 1) 30%, hsla(27, 99%, 62%, 1) 93%, hsla(27, 99%, 65%, 1), hsla(27, 99%, 47%, 1));
+    background-image:    -moz-linear-gradient(left, hsla(32, 99%, 52%, 1) 30%, hsla(27, 99%, 62%, 1) 93%, hsla(27, 99%, 65%, 1), hsla(27, 99%, 47%, 1));
+    background-image:     -ms-linear-gradient(left, hsla(32, 99%, 52%, 1) 30%, hsla(27, 99%, 62%, 1) 93%, hsla(27, 99%, 65%, 1), hsla(27, 99%, 47%, 1));
+    background-image:      -o-linear-gradient(left, hsla(32, 99%, 52%, 1) 30%, hsla(27, 99%, 62%, 1) 93%, hsla(27, 99%, 65%, 1), hsla(27, 99%, 47%, 1));
+    background-image:         linear-gradient(to right, hsla(32, 99%, 52%, 1) 30%, hsla(27, 99%, 62%, 1) 93%, hsla(27, 99%, 65%, 1), hsla(27, 99%, 47%, 1));
+}
+
+.ribbon.green {
+    color: hsla(0, 0%, 100%, 1);
+    border-color: hsla(107, 99%, 29%, 1);
+    background-color: hsla(107, 99%, 34%, 1);
+    background-image: -webkit-linear-gradient(left, hsla(112, 99%, 34%, 1) 30%, hsla(107, 99%, 38%, 1) 93%, hsla(107, 99%, 41%, 1), hsla(107, 99%, 31%, 1));
+    background-image:    -moz-linear-gradient(left, hsla(112, 99%, 34%, 1) 30%, hsla(107, 99%, 38%, 1) 93%, hsla(107, 99%, 41%, 1), hsla(107, 99%, 31%, 1));
+    background-image:     -ms-linear-gradient(left, hsla(112, 99%, 34%, 1) 30%, hsla(107, 99%, 38%, 1) 93%, hsla(107, 99%, 41%, 1), hsla(107, 99%, 31%, 1));
+    background-image:      -o-linear-gradient(left, hsla(112, 99%, 34%, 1) 30%, hsla(107, 99%, 38%, 1) 93%, hsla(107, 99%, 41%, 1), hsla(107, 99%, 31%, 1));
+    background-image:         linear-gradient(to right, hsla(112, 99%, 34%, 1) 30%, hsla(107, 99%, 38%, 1) 93%, hsla(107, 99%, 41%, 1), hsla(107, 99%, 31%, 1));
+}
+
+.ribbon:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    height: 55%;
+    bottom: 15px;
+    left: 5px;
+    width: 70%;
+    max-width: 300px;
+    box-shadow: 0 12px 9px rgba(0, 0, 0, 0.6);
+    -webkit-transform: skew(-35deg) rotate(-6deg);
+       -moz-transform: skew(-35deg) rotate(-6deg);
+        -ms-transform: skew(-35deg) rotate(-6deg);
+         -o-transform: skew(-35deg) rotate(-6deg);
+            transform: skew(-35deg) rotate(-6deg);
+}
+.ribbon:after {
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    width: 0px;
+    height: 0px;
+    border: solid 6px transparent;
+    border-bottom: solid 4px transparent;
+    border-right: solid 4px transparent;
+    border-left: solid 4px hsla(0, 0%, 30%, 1);
+    border-top: solid 4px hsla(0, 0%, 30%, 1);
+    content: "";
+    margin-top: 1px;
+}
+
+.ribbon.light:after {
+    border-top-color: hsla(0, 0%, 70%, 1);
+    border-left-color: hsla(0, 0%, 70%, 1);
+}
+
+.ribbon .ribbon-tail {
+    overflow: hidden;
+    position: absolute;
+    width: 23px;
+    left: -23px;
+    top: -1px;
+    bottom: -1px;
+    border: solid 1px hsla(0, 0%, 10%, 1);
+    border-left: none;
+    border-right: none;
+}
+
+.ribbon.light .ribbon-tail {
+    border-color: hsla(0, 0%, 80%, 1);
+}
+
+.ribbon.blue .ribbon-tail {
+    border-color: hsla(217, 99%, 50%, 1);
+}
+
+.ribbon.orange .ribbon-tail {
+    border-color: hsla(27, 99%, 50%, 1);
+}
+
+.ribbon.green .ribbon-tail {
+    border-color: hsla(107, 99%, 29%, 1);
+}
+
+.ribbon .ribbon-top, .ribbon .ribbon-bottom {
+    position: absolute;
+    left: 7px;
+    width: 31px;
+    height: 31px;
+    background: hsla(0, 0%, 10%, 1);
+    border: solid 1px hsla(0, 0%, 10%, 1);
+}
+
+.ribbon.light .ribbon-top, .ribbon.light .ribbon-bottom {
+    background: hsla(65, 100%, 92%, 1);
+    border-color: hsla(0, 0%, 80%, 1);
+}
+
+.ribbon.blue .ribbon-top, .ribbon.blue .ribbon-bottom {
+    background: hsla(212, 99%, 47%, 1);
+    border-color: hsla(217, 99%, 50%, 1);
+}
+
+.ribbon.orange .ribbon-top, .ribbon.orange .ribbon-bottom {
+    background: hsla(32, 99%, 52%, 1);
+    border-color: hsla(27, 99%, 50%, 1);
+}
+
+.ribbon.green .ribbon-top, .ribbon.green .ribbon-bottom {
+    background: hsla(112, 99%, 34%, 1);
+    border-color: hsla(107, 99%, 29%, 1);
+}
+
+.ribbon .ribbon-top {
+    top: -16px;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+    box-shadow: 9px 4px 9px hsla(0, 0%, 0%, 0.6);
+}
+
+.ribbon.light .ribbon-top {
+    box-shadow: 9px 4px 9px hsla(0, 0%, 0%, 0.3);
+}
+
+.ribbon .ribbon-bottom {
+    bottom: -16px;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+/*****************************************************************************/
+
+.request-ip {
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+
+.request-vlan {
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.request-vlan a {
+    display: inline-block;
+    padding: 2px 6px;
+    color: hsla(0, 0%, 30%, 1);
+    text-decoration: none;
+    -webkit-transition: background-color 0.2s;
+       -moz-transition: background-color 0.2s;
+        -ms-transition: background-color 0.2s;
+         -o-transition: background-color 0.2s;
+            transition: background-color 0.2s;
+}
+
+.ribbon.blue .request-vlan a, .ribbon.green .request-vlan a {
+    color: hsla(0, 0%, 100%, 1);
+}
+
+.ribbon.orange .request-vlan a {
+    color: hsla(0, 0%, 100%, 1);
+}
+.request-vlan a:hover {
+    background: hsla(0, 0%, 0%, 0.5);
+    color: hsla(0, 0%, 100%, 1);
+    border-radius: 2px;
+}
+
+.request .status-icon {
+    background-image: url(/Content/img/pending.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+    background-size: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+.request.approved .status-icon {
+    background-image: url(/Content/img/approved.jpg);
+}
+
+.request.rejected .status-icon {
+    background-image: url(/Content/img/rejected.jpg);
+}
+
+.request.completed .status-icon {
+    background-image: url(/Content/img/completed.jpg);
+}
+
+.pagination-container {
+    display: inline-block;
+    float: right;
+}

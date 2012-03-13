@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ApprovedRequestMail</title>
+</head>
+<body>
+    <div>
+        <a href="/@Model.User.Id">@Model.User.FirstName, @Model.User.LastName</a> has approved an IP request form:<br />
+        Vlan: <text>VLAN</text>@Model.Vlan.Number @Model.Vlan.Name<br />
+        <a href="@Model.Url">@Model.Url</a>
+    </div>
+</body>
+</html>

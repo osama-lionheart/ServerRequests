@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>UpdateRequestMail</title>
+</head>
+<body>
+    <div>
+        <a href="/@Model.User.Id">@Model.User.FirstName, @Model.User.LastName</a> has updated an IP request form:<br />
+        <a href="@Model.Url">@Model.Url</a>
+    </div>
+</body>
+</html>

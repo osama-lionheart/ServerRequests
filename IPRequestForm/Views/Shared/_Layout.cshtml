@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "MainLayout.cshtml";
+}
+
+@model IPRequestForm.ViewModels.ViewModelBase
+@using IPRequestForm.Controllers;
+
+@helper selectCategory(RequestFilters filter) {
+    if(Model.RequestFilter == filter) {
+        @:selected
+    }
+}
+
+@RenderBody()
+
+@section TopBar{
+    @Html.Partial("TopBar")
+}
+
+@section LeftPanel{
+    <aside>
+        <a href="/request/new" class="button create-button" tabindex="0">Create</a>
+        <div class="panel">
+            <div class="panel-head">
+                Requests</div>
+            <div class="panel-body">
+                <ul>
+                    <li class="all-requests @selectCategory(RequestFilters.All)"><a href="/request/all">
+                        All</a> </li>
+                    <li class="pending-requests @selectCategory(RequestFilters.Pending)"><a href="/request/pending">
+                        Pending</a> </li>
+                    <li class="accepted-requests @selectCategory(RequestFilters.Approved)"><a href="/request/approved">
+                        Approved</a> </li>
+                    <li class="rejected-requests @selectCategory(RequestFilters.Rejected)"><a href="/request/rejected">
+                        Rejected</a> </li>
+                    <li class="completed-requests @selectCategory(RequestFilters.Completed)"><a href="/request/completed">
+                        Completed</a> </li>
+                    <li class="deleted-requests @selectCategory(RequestFilters.Deleted)"><a href="/request/deleted">
+                        Deleted</a> </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+}

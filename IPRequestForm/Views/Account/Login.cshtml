@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Login";
+
+    var hasError = !string.IsNullOrEmpty(ViewBag.ErrorMessage);
+}
+<div class="account-box login-box">
+    <h2>Sign In</h2>
+    <form method="post" action="">
+    <div class="form-element @(hasError ? "form-error" : "")">
+        <label>
+            <strong>Email</strong>
+            <input name="email" type="text" />
+        </label>
+    </div>
+    <div class="form-element @(hasError ? "form-error" : "")">
+        <label>
+            <strong>Password</strong>
+            <input name="password" type="password" />
+        </label>
+    @if (hasError)
+    {
+        <div class="error-message">@ViewBag.ErrorMessage</div>
+    }
+    
+    </div>
+    <input type="submit" class="button submit-button" value="Sign In" />
+    
+    <label class="remember">
+        <input name="rememberMe" type="checkbox" value="true" />
+        <input name="rememberMe" type="hidden" value="false" />
+        <strong class="remember-label">Stay signed in</strong>
+    </label>
+    
+    </form>
+
+    <a class="forgot-password" href="/ResetPassword">Forgot your password?</a>
+</div>

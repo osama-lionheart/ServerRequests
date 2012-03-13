@@ -1,0 +1,6 @@
+﻿@model IPRequestForm.ViewModels.NewRequestViewMode
+@{
+    ViewBag.Title = "CreateNewRequest";
+}
+
+@Html.Partial("RequestForm", (IPRequestForm.ViewModels.RequestFormViewModel)Model.Request)
