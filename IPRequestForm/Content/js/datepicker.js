@@ -278,7 +278,7 @@
 				return new Date(
 					y === undefined ? now.getFullYear() : y,
 					m === undefined ? now.getMonth() : m,
-					d === undefined ? now.getDate() : d,
+					d === undefined || isNaN(d) ? now.getDate() : d,
 					h === undefined ? now.getHours() : h,
 					min === undefined ? now.getMinutes() : min,
 					0
