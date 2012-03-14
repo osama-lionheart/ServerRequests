@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Mail;
 
 namespace IPRequestForm.Controllers
 {
@@ -425,6 +426,30 @@ namespace IPRequestForm.Controllers
             //repo.SaveChanges();
 
             return Content("Fixed");
+        }
+
+        [GET("/admin/sendMail")]
+        public ActionResult SendMail()
+        {
+            return Content(@"
+<html>
+<form method='POST'>
+<label>Email:</label><br/><input type='text' name='email' /><br/>
+<label>Subject:</label><br/><input type='text' name='subject' /><br/>
+<label>Body:</label><br/><textarea name='body'></textarea><br/>
+<input type='submit' value='Send' /><br/>
+</form>
+</html>
+");
+        }
+
+        [POST("/admin/sendMail")]
+        public ActionResult SendMail(string email, string subject, string body)
+        {
+            var mailer = new Mailer();
+            mailer.SendMail(new MailAddress[] { new MailAddress(email) }, subject, body);
+
+            return Redirect("/admin/sendMail");
         }
     }
 
