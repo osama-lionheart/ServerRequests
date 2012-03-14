@@ -224,6 +224,15 @@ namespace IPRequestForm.Models
                 OldRequestId = oldRequestId,
                 Notes = notes
             };
+            
+            if(oldRequest != null)
+            {
+                request.OriginalRequest = oldRequest.OriginalRequest;
+            }
+            else
+            {
+                //request.OriginalRequest = request;
+            }
 
             if (oldRequest != null && user.Id != owner.Id)
             {
@@ -255,15 +264,29 @@ namespace IPRequestForm.Models
             return request;
         }
 
-        public Port CreatePort(Request request, int portId, IPAddress ipAddress, int? subnetMask, int portTypeId, int portNumber, DateTime? startDate, DateTime? endDate)
+        string[] serversIPs = new string[] { "10.11.", "192.168.", "200.200.200." };
+
+        public Port CreatePort(Request request, int portId, IPAddress ipAddress, int? subnetMask, int portTypeId, int portNumber, int portDirectionId, DateTime? startDate, DateTime? endDate)
         {
+            if (portDirectionId == (int)PortDirections.UserToRequestedServer ||
+                portDirectionId == (int)PortDirections.RequestedServerToUser)
+            {
+                foreach (var serverIP in serversIPs)
+                {
+                    if (ipAddress.ToString().StartsWith(serverIP))
+                    {
+                        throw new IPAddressException("Either the IPAddress is invalid or the PortDirection");
+                    }
+                }
+            }
+
             var port = db.Ports.SingleOrDefault(x => x.Id == portId);
             var changed = false;
 
             if (port != null)
             {
                 if (!port.IP.Address.SequenceEqual(ipAddress.GetAddressBytes()) || portTypeId != port.PortTypeId ||
-                    portNumber != port.PortNumber)
+                    portNumber != port.PortNumber || portDirectionId != port.PortDirectionId)
                 {
                     changed = true;
                 }
@@ -336,11 +359,17 @@ namespace IPRequestForm.Models
                 {
                     PortTypeId = portTypeId,
                     PortNumber = portNumber,
+                    PortDirectionId = portDirectionId,
                     IP = CreateIP(ipAddress),
                     StartDate = startDate,
                     EndDate = endDate,
                     User = GetCurrentUser()
                 };
+
+                if (port.IP.Segment == null)
+                {
+                    throw new IPAddressException("The IP address doesn't have a segment");
+                }
 
                 if (subnetMask.HasValue)
                 {
@@ -950,6 +979,26 @@ namespace IPRequestForm.Models
         }
 
         #endregion
+
+        public OperatingSystem GetOperatingSystemById(int operatingSystemId)
+        {
+            return db.OperatingSystems.SingleOrDefault(x => x.Id == operatingSystemId);
+        }
+
+        public Location GetLocationById(int locationId)
+        {
+            return db.Locations.SingleOrDefault(x => x.Id == locationId);
+        }
+
+        public ServerType GetServerTypeById(int serverTypeId)
+        {
+            return db.ServerTypes.SingleOrDefault(x => x.Id == serverTypeId);
+        }
+
+        public ApplicationType GetApplicationTypeById(int applicationTypeId)
+        {
+            return db.ApplicationTypes.SingleOrDefault(x => x.Id == applicationTypeId);
+        }
     }
 
     [Serializable]
@@ -959,6 +1008,18 @@ namespace IPRequestForm.Models
         public VlanException(string message) : base(message) { }
         public VlanException(string message, Exception inner) : base(message, inner) { }
         protected VlanException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
+    }
+
+    [Serializable]
+    public class IPAddressException : Exception
+    {
+        public IPAddressException() { }
+        public IPAddressException(string message) : base(message) { }
+        public IPAddressException(string message, Exception inner) : base(message, inner) { }
+        protected IPAddressException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }

@@ -29,10 +29,6 @@
         $item.remove();
     });
 
-    $('.select input[type="hidden"]').live('change', function () {
-        console.log('change');
-    });
-
     $('.select-header').live('mousedown', function (ev) {
 
         var $select = $(this).parents('.select');

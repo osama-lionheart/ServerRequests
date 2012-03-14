@@ -7,6 +7,16 @@
 
 <script>
     $(function () {
+    
+        $('input[name=ServerTypeId]').change(function () {
+            var bladeId = @((int)IPRequestForm.ViewModels.ServerTypes.Blades);
+
+            if ($(this).val() == bladeId) {
+                $('.bladeOptions').show(200);
+            } else {
+                $('.bladeOptions').hide(200);
+            }
+        });
 
         var datePickerOptions = {
             format: 'd/m/Y',
@@ -14,19 +24,25 @@
             current: '5/5/2005',
             starts: 1,
             onBeforeShow: function () {
-                if ($(this).val()) {
-                    $(this).DatePickerSetDate($(this).val(), true);
+                var val = $(this).val();
+
+                if (val) {
+                    //var date = new Date(val);
+                    $(this).DatePickerSetDate(val, true);
                 } else {
                     $(this).DatePickerSetDate(new Date(), true);
                 }
             },
             onChange: function (formatted, dates) {
-                console.log(formatted, dates);
                 $(this).val(formatted);
                 $(this).textchanged();
                 //$(this).DatePickerHide();
             }
         };
+        
+        $('input[name=startDate], input[name=endDate]').each(function () {
+            $(this).DatePicker(datePickerOptions);
+        });
 
         function onTextChange() {
             var tr = $(this).parents('tr');
@@ -38,43 +54,82 @@
 
                 var newRow = tr.clone();
 
-                newRow.find("input[type=text]").val('').bind('textchange', onTextChange);
+                newRow.find('input[type=text]').val('').bind('textchange', onTextChange);
 
-                newRow.find('input[name="startDate"], input[name="endDate"]').each(function () {
+                newRow.find('input[name=startDate], input[name=endDate]').each(function () {
                     $(this).DatePicker(datePickerOptions);
                 });
 
-                $("#ports").append(newRow);
+                tr.parents('.ports').append(newRow);
 
-                tr.removeClass('new-port').find("input[type=text]").unbind('textchange');
+                tr.removeClass('new-port').find('input[type=text]').unbind('textchange');
             }
         }
 
-        $("#ports tr").last().find("input[type=text]").bind('textchange', onTextChange);
-
-        $('input[name=ServerTypeId]').change(function () {
-
-            if ($(this).val() == @((int)IPRequestForm.ViewModels.ServerTypes.Blades)) {
-                $('.bladeOptions').show(200);
-            } else {
-                $('.bladeOptions').hide(200);
-            }
+        $('.ports').each(function() {
+            $(this).find('tr:last-child input[type=text]').bind('textchange', onTextChange);
         });
 
-        $('.ports .select input[type="hidden"]').live('change', onTextChange);
-
-
-        $('input[name="startDate"], input[name="endDate"]').each(function () {
-            $(this).DatePicker(datePickerOptions);
-        });
-
+        $('.ports .select input[type=hidden]').live('change', onTextChange);
+        
         $('.ports .close-button').live('click', function () {
             $(this).parents('tr').remove();
+        });
+
+        
+        $('form#new-request-form').bind('submit', function () {
+            var serverIPs = ['10.11.', '192.168.', '200.200.200.'];
+
+            var cancel = false;
+            
+            $('.ports.user-requests').each(function() {
+                $(this).find('tr input[type=text]').removeClass('error');
+
+                $(this).find('tr input[type=text]').each(function() {
+                    var val = $(this).val();
+
+                    var ipArr = val.split(',');
+
+                    $.each(ipArr, function() {
+                        var parts = this.split('-');
+                        
+                        $.each(parts, function() {
+                            var ip = this;
+
+                            $.each(serverIPs, function() {
+                                if(ip.trim().indexOf(this) == 0) {
+                                    cancel = true;
+                                    return false;
+                                }
+                            });
+
+                            if(cancel) {
+                                return false;
+                            }
+                        });
+                        
+                        if(cancel) {
+                            return false;
+                        }
+                    });
+                    
+                    if(cancel) {
+                        $(this).addClass('error');
+                        return false;
+                    }
+                });
+
+                if(cancel) {
+                    return false;
+                }
+            });
+            
+            return !cancel;
         });
     });
 </script>
 
-<form method="post" action="/request/new" data-confirm="true">
+<form method="post" action="/request/new" data-confirm="true" id="new-request-form">
     @if (isUpdate)
     {
         <div class="actions-bar">
@@ -88,11 +143,7 @@
 
     @if (isCreate)
     {
-        <h2>
-            Creat a new IP request form</h2>
-    }
-    else
-    {
+        <h2>Creat a new IP request form</h2>
     }
     <div class="form-element">
         <label>
@@ -103,7 +154,7 @@
             }
             else
             {
-                <input name="BusinessService" type="text" tabindex="0" value="@(isUpdate ? Model.BusinessService : "")"/>
+                <input name="BusinessService" type="text" tabindex="0" value="@Model.BusinessService"/>
             }
         </label>
     </div>
@@ -116,7 +167,7 @@
             }
             else
             {
-                <input name="ApplicationName" type="text" tabindex="0" value="@(isUpdate ? Model.ApplicationName : "")"/>
+                <input name="ApplicationName" type="text" tabindex="0" value="@Model.ApplicationName"/>
             }
         </label>
     </div>
@@ -135,7 +186,7 @@
             foreach (var applicationType in @Model.ApplicationTypes)
             {
             <label class="check-label">
-                <input type="checkbox" name="ApplicationTypeId" value="@applicationType.Id" tabindex="0" @(isUpdate && Model.RequestApplicationTypes.Any(x => x.Id == applicationType.Id) ? "checked=checked" : "")/>
+                <input type="checkbox" name="ApplicationTypeId" value="@applicationType.Id" tabindex="0" @(Model.RequestApplicationTypes != null && Model.RequestApplicationTypes.Any(x => x.Id == applicationType.Id) ? "checked=checked" : "")/>
                 <strong>@applicationType.Name</strong>
             </label>
             }
@@ -150,7 +201,7 @@
             }
             else
             {
-                <input name="DNSName" type="text" tabindex="0" value="@(isUpdate ? Model.DNSName : "")"/>
+                <input name="DNSName" type="text" tabindex="0" value="@Model.DNSName"/>
             }
         </label>
     </div>
@@ -163,7 +214,7 @@
             }
             else
             {
-                <input name="NetBIOSName" type="text" tabindex="0" value="@(isUpdate ? Model.NetBIOSName : "")"/>
+                <input name="NetBIOSName" type="text" tabindex="0" value="@Model.NetBIOSName"/>
             }
         </label>
     </div>
@@ -183,7 +234,7 @@
                         <option value="0">Select...</option>
                         @foreach (var location in @Model.Locations)
                         {
-                            <option value="@location.Id" @(isUpdate && location.Id == Model.ServerLocation.Id ? "selected=selected" : "")>@location.Name</option>
+                            <option value="@location.Id" @(Model.ServerLocation != null && location.Id == Model.ServerLocation.Id ? "selected=selected" : "")>@location.Name</option>
                         }
                     </select>
                 }
@@ -202,7 +253,7 @@
                     <option value="0">Select...</option>
                     @foreach (var servertype in @Model.ServerTypes)
                     {
-                        <option  value="@servertype.Id" @(isUpdate && servertype.Id == Model.ServerType.Id ? "selected=selected" : "")>@servertype.Name</option>
+                        <option  value="@servertype.Id" @(Model.ServerType != null && servertype.Id == Model.ServerType.Id ? "selected=selected" : "")>@servertype.Name</option>
                     }
                 </select>
             }
@@ -217,7 +268,7 @@
                     }
                     else
                     {
-                        <input type="text" name="BladeSwitchLocation" tabindex="0"  value="@(isUpdate ? Model.RackChassisPort : "")"/>
+                        <input type="text" name="BladeSwitchLocation" tabindex="0"  value="@Model.RackChassisPort"/>
                     }
                 </label>
                 @if (!isView)
@@ -243,14 +294,14 @@
                         <option value="0">Select...</option>
                         @foreach (var operSys in Model.OperatingSystems)
                         {
-                            <option value="@operSys.Id" @(isUpdate && operSys.Id == Model.OperatingSystem.Id ? "selected=selected" : "")>@operSys.Name (@operSys.Architecture)</option>
+                            <option value="@operSys.Id" @(Model.OperatingSystem != null && operSys.Id == Model.OperatingSystem.Id ? "selected=selected" : "")>@operSys.Name (@operSys.Architecture)</option>
                         }
                     </select>
                 }
             </label>
         </div>
     </div>
-    @if (isView)
+    @if (isView && !string.IsNullOrWhiteSpace(Model.Notes))
     {
     <div class="form-element notes">
         <em>@Model.Notes</em>
@@ -263,163 +314,55 @@
             {
                 <span class="help-button">Help ?</span>
             }
+            
+    @{
+            var vmUserToRequestedServer = new ViewDataDictionary
+            { 
+                {"isView", isView},
+                {"isCreate", isCreate},
+                {"portTypes", Model.PortTypes},
+                {"classes", "user-requests"},
+                {"portDirectionId", (int)IPRequestForm.ViewModels.PortDirections.UserToRequestedServer }
+            };
+            
+            var vmRequestedServerToUser = new ViewDataDictionary
+            { 
+                {"isView", isView},
+                {"isCreate", isCreate},
+                {"portTypes", Model.PortTypes},
+                {"classes", "user-requests"},
+                {"portDirectionId", (int)IPRequestForm.ViewModels.PortDirections.RequestedServerToUser }
+            };
+            
+            var vmServerToRequestedServer = new ViewDataDictionary
+            { 
+                {"isView", isView},
+                {"isCreate", isCreate},
+                {"portTypes", Model.PortTypes},
+                {"classes", ""},
+                {"portDirectionId", (int)IPRequestForm.ViewModels.PortDirections.ServerToRequestedServer }
+            };
+            
+            var vmRequestedServerToServer = new ViewDataDictionary
+            { 
+                {"isView", isView},
+                {"isCreate", isCreate},
+                {"portTypes", Model.PortTypes},
+                {"classes", ""},
+                {"portDirectionId", (int)IPRequestForm.ViewModels.PortDirections.RequestedServerToServer }
+            };
+    }
+
             <h3>Server Policy</h3>
-            <div class="ports-wrapper">
-                <table id="ports" class="ports">
-                    <thead>
-                        <tr>
-                            <th>
-                                IP Address
-                            </th>
-                            <th>
-                                Port Number
-                            </th>
-                            <th>
-                                Port Type
-                            </th>
-                            <th>
-                                Direction
-                            </th>
-                            <th>
-                                Start Date
-                            </th>
-                            <th>
-                                End Date
-                            </th>
-                            <th>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @if (!isCreate)
-                    {
-                        foreach (var policy in Model.Policies)
-                        {
-                            <tr>
-                            <td>
-                                @if (isView)
-                                {
-                                    <span>@policy.IPAddress@(policy.SubnetMaskBits.HasValue ? "/" + policy.SubnetMaskBits.Value.ToString() : "")</span>
-                                }
-                                else
-                                {
-                                    <input type="text" name="IPAddress" class="ip-address" tabindex="0" value="@policy.IPAddress@(policy.SubnetMaskBits.HasValue ? "/" + policy.SubnetMaskBits.Value.ToString() : "")" />
-                                    <input type="hidden" name="portId" value="@policy.Id"/>
-                                }
-                            </td>
-                            <td>
-                                @if (isView)
-                                {
-                                    <span>@policy.PortNumber</span>
-                                }
-                                else
-                                {
-                                    <input type="text" name="PortNumber" tabindex="0" value="@policy.PortNumber" />
-                                }
-                            </td>
-                            <td>
-                                @if (isView)
-                                {
-                                    <span>@policy.PortType.Name</span>
-                                }
-                                else
-                                {
-                                    <select name="PortTypeId">
-                                        <option value="0">Select...</option>
-                                        @foreach (var portType in @Model.PortTypes)
-                                        {
-                                            <option value="@portType.Id" @(Model.Policies.Any(x => x.PortType.Id == portType.Id) ? "selected=selected" : "")>@portType.Name</option>
-                                        }
-                                    </select>
-                                }
-                            </td>   
-                            <td>
-                                @if (isView)
-                                {
-                                    <span>@(policy.PortForwardDirection == IPRequestForm.ViewModels.PortForwardDirections.In ? "User To Requested Server" : "Requested Server To User")</span>
-                                }
-                                else
-                                {
-                                    <select name="direction">
-                                        <option value="">Select...</option>
-                                        <option value="true" @(policy.PortForwardDirection == IPRequestForm.ViewModels.PortForwardDirections.In ? "selected=selected" : "")>To Requested Server</option>
-                                        <option value="false" @(policy.PortForwardDirection == IPRequestForm.ViewModels.PortForwardDirections.Out ? "selected=selected" : "")>From Requested Server</option>
-                                    </select>
-                                }
-                            </td>
-                            <td>
-                                @if (isView)
-                                {
-                                    <span>@(policy.StartDate.HasValue ? policy.StartDate.Value.ToString("d/M/yyyy") : "")</span>
-                                }
-                                else
-                                {
-                                    <input type="text" name="startDate" tabindex="0" value="@(policy.StartDate.HasValue ? policy.StartDate.Value.ToString("d/M/yyyy") : "")" autocomplete="off" />
-                                }
-                            </td>
-                            <td>
-                                @if (isView)
-                                {
-                                    <span>@(policy.EndDate.HasValue ? policy.EndDate.Value.ToString("d/M/yyyy") : "")</span>
-                                }
-                                else
-                                {
-                                    <input type="text" name="endDate" tabindex="0" value="@(policy.EndDate.HasValue ? policy.EndDate.Value.ToString("d/M/yyyy") : "")" autocomplete="off" />
-                                }
-                            </td>
-                            <td>
-                            @if(!isView)
-                            {
-                                <div class="close-button"></div>
-                            }
-                            </td>
-                            </tr>
-                        }
-                    }
-                    
-                    @if (!isView)
-                    {
-                        <tr class="new-port">
-                            <td>
-                                <input type="text" class="ip-address" name="IPAddress" tabindex="0" />
-                                <input type="hidden" name="portId" value="0"/>
-                            </td>
-                            <td>
-                                <input type="text" name="PortNumber" tabindex="0" />
-                            </td>
-                            <td>
-                                <select name="PortTypeId">
-                                    <option value="0">Select...</option>
-                                    @foreach (var porttype in @Model.PortTypes)
-                                    {
-                                        <option value="@porttype.Id">@porttype.Name</option>
-                                    }
-                                </select>
-                            </td>
-                            <td>
-                                <select name="direction">
-                                    <option value="">Select...</option>
-                                    <option value="true">To Requested Server</option>
-                                    <option value="false">From Requested Server</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" name="startDate" tabindex="0" autocomplete="off" />
-                            </td>
-                            <td>
-                                <input type="text" name="endDate" tabindex="0" autocomplete="off" />
-                            </td>
-                            <td>
-                            @if(!isView)
-                            {
-                                <div class="close-button"></div>
-                            }
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-            </div>
+            <h4>User to Requested Server</h4>
+            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.UserToRequestedServer) : null, vmUserToRequestedServer)
+            <h4>Requested Server to User</h4>
+            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToUser) : null, vmRequestedServerToUser)
+            <h4>Server to Requested Server</h4>
+            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.ServerToRequestedServer) : null, vmServerToRequestedServer)
+            <h4>Requested Server to Server</h4>
+            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToServer) : null, vmRequestedServerToServer)
+            
         </div>
     }
     @if (!isView)

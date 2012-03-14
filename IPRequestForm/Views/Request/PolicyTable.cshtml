@@ -1,0 +1,143 @@
+﻿@model IEnumerable<IPRequestForm.ViewModels.Policy>
+@{
+    var isView = (bool)ViewData["isView"];
+    var isCreate = (bool)ViewData["isCreate"];
+    var portTypes = (IEnumerable<IPRequestForm.Models.PortType>)ViewData["portTypes"];
+    var classes = (string)ViewData["classes"];
+    var portDirectionId = (int)ViewData["portDirectionId"];
+}
+
+<div class="ports-wrapper">
+    <table id="ports" class="ports @classes">
+        <thead>
+            <tr>
+                <th>
+                    IP Address
+                </th>
+                <th>
+                    Port Number
+                </th>
+                <th>
+                    Port Type
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (!isCreate)
+        {
+            foreach (var policy in Model)
+            {
+                <tr>
+                <td>
+                    @if (isView)
+                    {
+                        <span>@policy.IPAddress@(policy.SubnetMaskBits.HasValue ? "/" + policy.SubnetMaskBits.Value.ToString() : "")</span>
+                    }
+                    else
+                    {
+                        <input type="text" name="IPAddress" class="ip-address" tabindex="0" value="@policy.IPAddress@(policy.SubnetMaskBits.HasValue ? "/" + policy.SubnetMaskBits.Value.ToString() : "")" />
+                        <input type="hidden" name="portId" value="@policy.Id"/>
+                        <input type="hidden" name="portDirectionId" value="@((int)policy.PortDirection)"/>
+                    }
+                </td>
+                <td>
+                    @if (isView)
+                    {
+                        <span>@policy.PortNumber</span>
+                    }
+                    else
+                    {
+                        <input type="text" name="PortNumber" tabindex="0" value="@policy.PortNumber" />
+                    }
+                </td>
+                <td>
+                    @if (isView)
+                    {
+                        <span>@policy.PortType.Name</span>
+                    }
+                    else
+                    {
+                        <select name="PortTypeId">
+                            <option value="0">Select...</option>
+                            @foreach (var portType in portTypes)
+                            {
+                                <option value="@portType.Id" @(policy.PortType.Id == portType.Id ? "selected=selected" : "")>@portType.Name</option>
+                            }
+                        </select>
+                    }
+                </td>
+                <td>
+                    @if (isView)
+                    {
+                        <span>@(policy.StartDate.HasValue ? policy.StartDate.Value.ToString("d/M/yyyy") : "")</span>
+                    }
+                    else
+                    {
+                        <input type="text" name="startDate" tabindex="0" value="@(policy.StartDate.HasValue ? policy.StartDate.Value.ToString("d/M/yyyy") : "")" autocomplete="off" />
+                    }
+                </td>
+                <td>
+                    @if (isView)
+                    {
+                        <span>@(policy.EndDate.HasValue ? policy.EndDate.Value.ToString("d/M/yyyy") : "")</span>
+                    }
+                    else
+                    {
+                        <input type="text" name="endDate" tabindex="0" value="@(policy.EndDate.HasValue ? policy.EndDate.Value.ToString("d/M/yyyy") : "")" autocomplete="off" />
+                    }
+                </td>
+                <td>
+                @if (!isView)
+                {
+                    <div class="close-button"></div>
+                }
+                </td>
+                </tr>
+            }
+        }
+                    
+        @if (!isView)
+        {
+            <tr class="new-port">
+                <td>
+                    <input type="text" class="ip-address" name="IPAddress" tabindex="0" />
+                    <input type="hidden" name="portId" value="0"/>
+                    <input type="hidden" name="portDirectionId" value="@portDirectionId"/>
+                </td>
+                <td>
+                    <input type="text" name="PortNumber" tabindex="0" />
+                </td>
+                <td>
+                    <select name="PortTypeId">
+                        <option value="0">Select...</option>
+                        @foreach (var portType in portTypes)
+                        {
+                            <option value="@portType.Id">@portType.Name</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="startDate" tabindex="0" autocomplete="off" />
+                </td>
+                <td>
+                    <input type="text" name="endDate" tabindex="0" autocomplete="off" />
+                </td>
+                <td>
+                @if (!isView)
+                {
+                    <div class="close-button"></div>
+                }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

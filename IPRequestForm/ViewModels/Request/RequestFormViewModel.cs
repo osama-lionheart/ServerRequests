@@ -17,7 +17,9 @@ namespace IPRequestForm.ViewModels
 
     public class RequestFormViewModel
     {
-        public RequestFormViews RequestFormView { get; private set; }
+        #region Public Properties
+
+        public RequestFormViews RequestFormView { get; set; }
 
         public int RequestId { get; set; }
 
@@ -68,6 +70,15 @@ namespace IPRequestForm.ViewModels
         public IEnumerable<Location> Locations { get; set; }
 
         public IEnumerable<ApplicationType> ApplicationTypes { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        public RequestFormViewModel()
+        {
+
+        }
 
         public RequestFormViewModel(IEnumerable<ApplicationType> applicationTypes, IEnumerable<Location> locations, IEnumerable<ServerType> serverTypes,
             IEnumerable<PortType> portTypes, IEnumerable<IPRequestForm.Models.OperatingSystem> operatingSystems, RequestFormViews requestFormView)
@@ -152,11 +163,13 @@ namespace IPRequestForm.ViewModels
                 SubnetMaskBits = i.Port.SubnetMaskId != null ? (int?)BitConverter.ToUInt32(i.Port.SubnetMask.Address.Reverse().ToArray(), 0).BitsSetCountNaive() : null,
                 PortType = i.Port.PortType,
                 PortNumber = i.Port.PortNumber,
-                PortForwardDirection = i.Port.ServerInbound ? PortForwardDirections.In : PortForwardDirections.Out,
+                PortDirection = (PortDirections)i.Port.PortDirection.Id,
                 StartDate = i.Port.StartDate,
                 EndDate = i.Port.EndDate
             });
         }
+
+        #endregion
     }
 
     public class Policy
@@ -171,7 +184,7 @@ namespace IPRequestForm.ViewModels
 
         public int PortNumber { get; set; }
 
-        public PortForwardDirections PortForwardDirection { get; set; }
+        public PortDirections PortDirection { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -184,9 +197,11 @@ namespace IPRequestForm.ViewModels
         Standalone = 2
     }
 
-    public enum PortForwardDirections
+    public enum PortDirections
     {
-        In,
-        Out
+        UserToRequestedServer = 1,
+        RequestedServerToUser = 2,
+        ServerToRequestedServer = 3,
+        RequestedServerToServer = 4
     }
 }

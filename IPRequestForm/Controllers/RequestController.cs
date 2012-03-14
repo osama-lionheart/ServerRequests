@@ -45,7 +45,7 @@ namespace IPRequestForm.Controllers
                                             int serverTypeId, int? bladeChassisId,
                                             string bladeSwitchLocation, bool? bladeTeaming,
                                             int operatingSystemId,
-                                            int[] portId, string[] ipAddress, string[] portNumber, int[] portTypeId, bool[] direction, string[] startDate, string[] endDate,
+                                            int[] portId, string[] ipAddress, string[] portNumber, int[] portTypeId, int[] portDirectionId, string[] startDate, string[] endDate,
                                             string notes, string submit)
         {
             var request = repo.CreateRequest(businessService, applicationName, applicationTypeId, netBIOSName, dnsName,
@@ -53,6 +53,11 @@ namespace IPRequestForm.Controllers
 
             for (int i = 0; i < portTypeId.Length; i++)
             {
+                if (string.IsNullOrWhiteSpace(ipAddress[i]))
+                {
+                    continue;
+                }
+
                 DateTime? startDateTime = null;
                 DateTime? endDateTime = null;
 
@@ -104,7 +109,7 @@ namespace IPRequestForm.Controllers
 
                         foreach (var port in finalPorts)
                         {
-                            repo.CreatePort(request, portId[i], IPAddress.Parse(parts[0]), int.Parse(parts[1]), portTypeId[i], port, startDateTime, endDateTime);
+                            repo.CreatePort(request, portId[i], IPAddress.Parse(parts[0]), int.Parse(parts[1]), portTypeId[i], port, portDirectionId[i], startDateTime, endDateTime);
                         }
                     }
                     else
@@ -127,7 +132,7 @@ namespace IPRequestForm.Controllers
 
                                 foreach (var port in finalPorts)
                                 {
-                                    repo.CreatePort(request, portId[i], currentIP, null, portTypeId[i], port, startDateTime, endDateTime);
+                                    repo.CreatePort(request, portId[i], currentIP, null, portTypeId[i], port, portDirectionId[i], startDateTime, endDateTime);
                                 }
                             }
                         }
@@ -135,7 +140,7 @@ namespace IPRequestForm.Controllers
                         {
                             foreach (var port in finalPorts)
                             {
-                                repo.CreatePort(request, portId[i], firstIP, null, portTypeId[i], port, startDateTime, endDateTime);
+                                repo.CreatePort(request, portId[i], firstIP, null, portTypeId[i], port, portDirectionId[i], startDateTime, endDateTime);
                             }
                         }
                     }
@@ -143,6 +148,12 @@ namespace IPRequestForm.Controllers
             }
 
             repo.SaveChanges();
+
+            if (!request.OriginalId.HasValue)
+            {
+                request.OriginalId = request.Id;
+                repo.SaveChanges();
+            }
 
             if (request.Id == request.OriginalId)
             {

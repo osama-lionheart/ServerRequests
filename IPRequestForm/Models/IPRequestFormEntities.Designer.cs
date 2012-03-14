@@ -52,26 +52,27 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Switch_IP", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.IP), "Switch", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Switch), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_SwitchPort_IP", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.IP), "SwitchPort", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.SwitchPort), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Vlan_IP", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.IP), "Vlan", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Vlan), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_IP", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.IP), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_IP1", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.IP), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_PortType", "PortType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.PortType), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.User), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_RequestPort_Port", "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Port), "RequestPort", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.RequestPort), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_CommunicationAction_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "CommunicationAction", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.CommunicationAction), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.Request), "Request1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_Request1", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "Request1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.User), "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_User1", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.User), "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_Virtualization", "Virtualization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Virtualization), "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_RequestApplicationType_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "RequestApplicationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.RequestApplicationType), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_RequestPort_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "RequestPort", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.RequestPort), true)]
-[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_SecurityAction_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "SecurityAction", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.SecurityAction), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_IP_Segment", "Segment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.Segment), "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.IP), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Segment_IP", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.IP), "Segment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Segment), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Segment_IP1", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.IP), "Segment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Segment), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Segment_IPGroup", "IPGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.IPGroup), "Segment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Segment), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Segment_Vlan", "Vlan", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Vlan), "Segment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Segment), true)]
 [assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_SegmentLocation_Segment", "Segment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Segment), "SegmentLocation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.SegmentLocation), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_IP", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.IP), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_IP1", "IP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.IP), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_PortDirection", "PortDirection", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.PortDirection), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_PortType", "PortType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.PortType), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Port_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.User), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Port), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_RequestPort_Port", "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Port), "RequestPort", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.RequestPort), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_CommunicationAction_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "CommunicationAction", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.CommunicationAction), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.Request), "Request1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_Request1", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(IPRequestForm.Models.Request), "Request1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.User), "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_User1", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.User), "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_Request_Virtualization", "Virtualization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Virtualization), "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.Request), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_RequestApplicationType_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "RequestApplicationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.RequestApplicationType), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_RequestPort_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "RequestPort", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.RequestPort), true)]
+[assembly: EdmRelationshipAttribute("IPRequestFormModel", "FK_SecurityAction_Request", "Request", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IPRequestForm.Models.Request), "SecurityAction", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IPRequestForm.Models.SecurityAction), true)]
 
 #endregion
 
@@ -622,22 +623,6 @@ namespace IPRequestForm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Port> Ports
-        {
-            get
-            {
-                if ((_Ports == null))
-                {
-                    _Ports = base.CreateObjectSet<Port>("Ports");
-                }
-                return _Ports;
-            }
-        }
-        private ObjectSet<Port> _Ports;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<RequestPort> RequestPorts
         {
             get
@@ -654,22 +639,6 @@ namespace IPRequestForm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Request> Requests
-        {
-            get
-            {
-                if ((_Requests == null))
-                {
-                    _Requests = base.CreateObjectSet<Request>("Requests");
-                }
-                return _Requests;
-            }
-        }
-        private ObjectSet<Request> _Requests;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Segment> Segments
         {
             get
@@ -682,6 +651,54 @@ namespace IPRequestForm.Models
             }
         }
         private ObjectSet<Segment> _Segments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PortDirection> PortDirections
+        {
+            get
+            {
+                if ((_PortDirections == null))
+                {
+                    _PortDirections = base.CreateObjectSet<PortDirection>("PortDirections");
+                }
+                return _PortDirections;
+            }
+        }
+        private ObjectSet<PortDirection> _PortDirections;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Port> Ports
+        {
+            get
+            {
+                if ((_Ports == null))
+                {
+                    _Ports = base.CreateObjectSet<Port>("Ports");
+                }
+                return _Ports;
+            }
+        }
+        private ObjectSet<Port> _Ports;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Request> Requests
+        {
+            get
+            {
+                if ((_Requests == null))
+                {
+                    _Requests = base.CreateObjectSet<Request>("Requests");
+                }
+                return _Requests;
+            }
+        }
+        private ObjectSet<Request> _Requests;
 
         #endregion
         #region AddTo Methods
@@ -935,14 +952,6 @@ namespace IPRequestForm.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Ports EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPorts(Port port)
-        {
-            base.AddObject("Ports", port);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the RequestPorts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRequestPorts(RequestPort requestPort)
@@ -951,19 +960,35 @@ namespace IPRequestForm.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Requests EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRequests(Request request)
-        {
-            base.AddObject("Requests", request);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Segments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSegments(Segment segment)
         {
             base.AddObject("Segments", segment);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PortDirections EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPortDirections(PortDirection portDirection)
+        {
+            base.AddObject("PortDirections", portDirection);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Ports EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPorts(Port port)
+        {
+            base.AddObject("Ports", port);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Requests EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRequests(Request request)
+        {
+            base.AddObject("Requests", request);
         }
 
         #endregion
@@ -4740,50 +4765,6 @@ namespace IPRequestForm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_Port_IP", "Port")]
-        public EntityCollection<Port> Ports
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP", "Port");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP", "Port", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_Port_IP1", "Port")]
-        public EntityCollection<Port> Ports1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP1", "Port");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP1", "Port", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_IP_Segment", "Segment")]
         public Segment Segment
         {
@@ -4856,6 +4837,50 @@ namespace IPRequestForm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Segment>("IPRequestFormModel.FK_Segment_IP1", "Segment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_Port_IP", "Port")]
+        public EntityCollection<Port> Ports
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP", "Port");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP", "Port", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_Port_IP1", "Port")]
+        public EntityCollection<Port> Ports1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP1", "Port");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Port>("IPRequestFormModel.FK_Port_IP1", "Port", value);
                 }
             }
         }
@@ -5374,17 +5399,17 @@ namespace IPRequestForm.Models
         /// <param name="iPId">Initial value of the IPId property.</param>
         /// <param name="portTypeId">Initial value of the PortTypeId property.</param>
         /// <param name="portNumber">Initial value of the PortNumber property.</param>
-        /// <param name="serverInbound">Initial value of the ServerInbound property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
-        public static Port CreatePort(global::System.Int32 id, global::System.Int32 iPId, global::System.Int32 portTypeId, global::System.Int32 portNumber, global::System.Boolean serverInbound, global::System.Int32 userId)
+        /// <param name="portDirectionId">Initial value of the PortDirectionId property.</param>
+        public static Port CreatePort(global::System.Int32 id, global::System.Int32 iPId, global::System.Int32 portTypeId, global::System.Int32 portNumber, global::System.Int32 userId, global::System.Int32 portDirectionId)
         {
             Port port = new Port();
             port.Id = id;
             port.IPId = iPId;
             port.PortTypeId = portTypeId;
             port.PortNumber = portNumber;
-            port.ServerInbound = serverInbound;
             port.UserId = userId;
+            port.PortDirectionId = portDirectionId;
             return port;
         }
 
@@ -5493,30 +5518,6 @@ namespace IPRequestForm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean ServerInbound
-        {
-            get
-            {
-                return _ServerInbound;
-            }
-            set
-            {
-                OnServerInboundChanging(value);
-                ReportPropertyChanging("ServerInbound");
-                _ServerInbound = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ServerInbound");
-                OnServerInboundChanged();
-            }
-        }
-        private global::System.Boolean _ServerInbound;
-        partial void OnServerInboundChanging(global::System.Boolean value);
-        partial void OnServerInboundChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.DateTime> StartDate
@@ -5609,6 +5610,30 @@ namespace IPRequestForm.Models
         private global::System.Int32 _UserId;
         partial void OnUserIdChanging(global::System.Int32 value);
         partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PortDirectionId
+        {
+            get
+            {
+                return _PortDirectionId;
+            }
+            set
+            {
+                OnPortDirectionIdChanging(value);
+                ReportPropertyChanging("PortDirectionId");
+                _PortDirectionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PortDirectionId");
+                OnPortDirectionIdChanged();
+            }
+        }
+        private global::System.Int32 _PortDirectionId;
+        partial void OnPortDirectionIdChanging(global::System.Int32 value);
+        partial void OnPortDirectionIdChanged();
 
         #endregion
     
@@ -5686,6 +5711,44 @@ namespace IPRequestForm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<IP>("IPRequestFormModel.FK_Port_IP1", "IP", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_Port_PortDirection", "PortDirection")]
+        public PortDirection PortDirection
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PortDirection>("IPRequestFormModel.FK_Port_PortDirection", "PortDirection").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PortDirection>("IPRequestFormModel.FK_Port_PortDirection", "PortDirection").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PortDirection> PortDirectionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PortDirection>("IPRequestFormModel.FK_Port_PortDirection", "PortDirection");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PortDirection>("IPRequestFormModel.FK_Port_PortDirection", "PortDirection", value);
                 }
             }
         }
@@ -5784,6 +5847,112 @@ namespace IPRequestForm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RequestPort>("IPRequestFormModel.FK_RequestPort_Port", "RequestPort", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="IPRequestFormModel", Name="PortDirection")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PortDirection : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PortDirection object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static PortDirection CreatePortDirection(global::System.Int32 id, global::System.String name)
+        {
+            PortDirection portDirection = new PortDirection();
+            portDirection.Id = id;
+            portDirection.Name = name;
+            return portDirection;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("IPRequestFormModel", "FK_Port_PortDirection", "Port")]
+        public EntityCollection<Port> Ports
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Port>("IPRequestFormModel.FK_Port_PortDirection", "Port");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Port>("IPRequestFormModel.FK_Port_PortDirection", "Port", value);
                 }
             }
         }
@@ -5917,8 +6086,7 @@ namespace IPRequestForm.Models
         /// <param name="submissionDate">Initial value of the SubmissionDate property.</param>
         /// <param name="virtualizationId">Initial value of the VirtualizationId property.</param>
         /// <param name="ownerId">Initial value of the OwnerId property.</param>
-        /// <param name="originalId">Initial value of the OriginalId property.</param>
-        public static Request CreateRequest(global::System.Int32 id, global::System.String applicationName, global::System.Int32 userId, global::System.Boolean deleted, global::System.DateTime submissionDate, global::System.Int32 virtualizationId, global::System.Int32 ownerId, global::System.Int32 originalId)
+        public static Request CreateRequest(global::System.Int32 id, global::System.String applicationName, global::System.Int32 userId, global::System.Boolean deleted, global::System.DateTime submissionDate, global::System.Int32 virtualizationId, global::System.Int32 ownerId)
         {
             Request request = new Request();
             request.Id = id;
@@ -5928,7 +6096,6 @@ namespace IPRequestForm.Models
             request.SubmissionDate = submissionDate;
             request.VirtualizationId = virtualizationId;
             request.OwnerId = ownerId;
-            request.OriginalId = originalId;
             return request;
         }
 
@@ -6205,9 +6372,9 @@ namespace IPRequestForm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 OriginalId
+        public Nullable<global::System.Int32> OriginalId
         {
             get
             {
@@ -6222,8 +6389,8 @@ namespace IPRequestForm.Models
                 OnOriginalIdChanged();
             }
         }
-        private global::System.Int32 _OriginalId;
-        partial void OnOriginalIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _OriginalId;
+        partial void OnOriginalIdChanging(Nullable<global::System.Int32> value);
         partial void OnOriginalIdChanged();
 
         #endregion

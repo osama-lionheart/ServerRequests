@@ -215,9 +215,7 @@
     <Content Include="Views\Account\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Mails\ChangePassword.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mails\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Header.cshtml" />
@@ -241,25 +239,28 @@
     <Content Include="Views\Account\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Mails\NewRequestMail.cshtml" />
+    <EmbeddedResource Include="Views\Mails\NewRequestMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Mails\UpdateRequestMail.cshtml" />
+    <EmbeddedResource Include="Views\Mails\UpdateRequestMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Mails\ApprovedRequestMail.cshtml" />
+    <EmbeddedResource Include="Views\Mails\ApprovedRequestMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Mails\RejectedRequestMail.cshtml" />
+    <EmbeddedResource Include="Views\Mails\RejectedRequestMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Mails\CompletedRequestMail.cshtml" />
+    <EmbeddedResource Include="Views\Mails\CompletedRequestMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\RequestPolicyHelp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\MainLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\PolicyTable.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
