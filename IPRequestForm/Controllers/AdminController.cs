@@ -10,6 +10,7 @@ using System.Diagnostics;
 
 namespace IPRequestForm.Controllers
 {
+    [Authorize(Roles="Administrators")]
     public class AdminController : Controller
     {
         private RequestRepository repo = new RequestRepository();
@@ -421,7 +422,7 @@ namespace IPRequestForm.Controllers
         {
             repo.FixIPs();
 
-            repo.SaveChanges();
+            //repo.SaveChanges();
 
             return Content("Fixed");
         }

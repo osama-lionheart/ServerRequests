@@ -358,9 +358,9 @@
             @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.UserToRequestedServer) : null, vmUserToRequestedServer)
             <h4>Requested Server to User</h4>
             @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToUser) : null, vmRequestedServerToUser)
-            <h4>Server to Requested Server</h4>
+            <h4>Other Server to Requested Server</h4>
             @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.ServerToRequestedServer) : null, vmServerToRequestedServer)
-            <h4>Requested Server to Server</h4>
+            <h4>Requested Server to Other Server</h4>
             @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToServer) : null, vmRequestedServerToServer)
             
         </div>
