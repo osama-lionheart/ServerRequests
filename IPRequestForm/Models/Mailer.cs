@@ -54,8 +54,12 @@ namespace IPRequestForm.Models
                 }
             }
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Send(msg);
+            try
+            {
+                var smtp = new SmtpClient();
+                smtp.Send(msg);
+            }
+            catch { }
         }
 
         public void SendChangePasswordMail(User user)
