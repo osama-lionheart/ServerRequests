@@ -238,6 +238,20 @@ namespace IPRequestForm.Controllers
                     subnetMasks.Add(CommonFunctions.MaskBitsToInt(int.Parse(ipParts[1])));
                     vlanNames.Add(parts[1]);
                     vlanNumbers.Add(int.Parse(parts[2].Substring(4)));
+
+                    for (int i = 0; i < ipFormats.Count; i++)
+                    {
+                        var ip = IPAddress.Parse(string.Format(ipFormats[i], 255));
+                        var subnetMask = CommonFunctions.IPAddressFromInt(subnetMasks[i]);
+                        var gateway = CommonFunctions.IPAddressFromInt((subnetMasks[i] & ip.ToInt()) + 1);
+                        var vlanName = vlanNames[i];
+                        var vlanNumber = vlanNumbers[i];
+                        var locationName = "Giza";
+
+                        var vlan = repo.CreateVlan(vlanName, vlanNumber, subnetMask);
+                        var location = repo.CreateLocation(locationName);
+                        repo.CreateSegment(vlanName, subnetMask, gateway, vlan, location);
+                    }
                 }
                 else
                 {
