@@ -72,7 +72,7 @@ namespace IPRequestForm.Controllers
                 }
 
                 // Create a list of ports to be opened for each IP.
-                var finalPorts = new List<int>();
+                var finalPorts = new Dictionary<int, int?>();
 
                 var ports = portNumber[i].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -80,20 +80,17 @@ namespace IPRequestForm.Controllers
                 {
                     var rangePorts = port.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    var firstPort = int.Parse(rangePorts[0].Trim());
+                    var startPort = int.Parse(rangePorts[0].Trim());
 
                     if (rangePorts.Length > 1) // Range of Ports
                     {
-                        var lastPort = int.Parse(rangePorts[1].Trim());
+                        var endPort = int.Parse(rangePorts[1].Trim());
 
-                        for (int j = firstPort; j <= lastPort; j++)
-                        {
-                            finalPorts.Add(j);
-                        }
+                        finalPorts.Add(startPort, endPort);
                     }
                     else // Only one port
                     {
-                        finalPorts.Add(firstPort);
+                        finalPorts.Add(startPort, null);
                     }
                 }
 
@@ -109,7 +106,7 @@ namespace IPRequestForm.Controllers
 
                         foreach (var port in finalPorts)
                         {
-                            repo.CreatePort(request, portId[i], IPAddress.Parse(parts[0]), int.Parse(parts[1]), portTypeId[i], port, portDirectionId[i], startDateTime, endDateTime);
+                            repo.CreatePort(request, portId[i], IPAddress.Parse(parts[0]), int.Parse(parts[1]), portTypeId[i], port.Key, port.Value, portDirectionId[i], startDateTime, endDateTime);
                         }
                     }
                     else
@@ -132,7 +129,7 @@ namespace IPRequestForm.Controllers
 
                                 foreach (var port in finalPorts)
                                 {
-                                    repo.CreatePort(request, portId[i], currentIP, null, portTypeId[i], port, portDirectionId[i], startDateTime, endDateTime);
+                                    repo.CreatePort(request, portId[i], currentIP, null, portTypeId[i], port.Key, port.Value, portDirectionId[i], startDateTime, endDateTime);
                                 }
                             }
                         }
@@ -140,7 +137,7 @@ namespace IPRequestForm.Controllers
                         {
                             foreach (var port in finalPorts)
                             {
-                                repo.CreatePort(request, portId[i], firstIP, null, portTypeId[i], port, portDirectionId[i], startDateTime, endDateTime);
+                                repo.CreatePort(request, portId[i], firstIP, null, portTypeId[i], port.Key, port.Value, portDirectionId[i], startDateTime, endDateTime);
                             }
                         }
                     }

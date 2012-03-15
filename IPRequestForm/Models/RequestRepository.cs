@@ -266,7 +266,7 @@ namespace IPRequestForm.Models
 
         string[] serversIPs = new string[] { "10.11.", "192.168.", "200.200.200." };
 
-        public Port CreatePort(Request request, int portId, IPAddress ipAddress, int? subnetMask, int portTypeId, int portNumber, int portDirectionId, DateTime? startDate, DateTime? endDate)
+        public Port CreatePort(Request request, int portId, IPAddress ipAddress, int? subnetMask, int portTypeId, int startPortNumber, int? endPortNumber, int portDirectionId, DateTime? startDate, DateTime? endDate)
         {
             if (portDirectionId == (int)PortDirections.UserToRequestedServer ||
                 portDirectionId == (int)PortDirections.RequestedServerToUser)
@@ -286,7 +286,7 @@ namespace IPRequestForm.Models
             if (port != null)
             {
                 if (!port.IP.Address.SequenceEqual(ipAddress.GetAddressBytes()) || portTypeId != port.PortTypeId ||
-                    portNumber != port.PortNumber || portDirectionId != port.PortDirectionId)
+                    startPortNumber != port.StartPortNumber || endPortNumber != port.EndPortNumber || portDirectionId != port.PortDirectionId)
                 {
                     changed = true;
                 }
@@ -358,7 +358,8 @@ namespace IPRequestForm.Models
                 port = new Port
                 {
                     PortTypeId = portTypeId,
-                    PortNumber = portNumber,
+                    StartPortNumber = startPortNumber,
+                    EndPortNumber = endPortNumber,
                     PortDirectionId = portDirectionId,
                     IP = CreateIP(ipAddress),
                     StartDate = startDate,

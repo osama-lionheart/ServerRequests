@@ -162,7 +162,8 @@ namespace IPRequestForm.ViewModels
                 IPAddress = CommonFunctions.IPDotted(i.Port.IP.Address),
                 SubnetMaskBits = i.Port.SubnetMaskId != null ? (int?)BitConverter.ToUInt32(i.Port.SubnetMask.Address.Reverse().ToArray(), 0).BitsSetCountNaive() : null,
                 PortType = i.Port.PortType,
-                PortNumber = i.Port.PortNumber,
+                StartPortNumber = i.Port.StartPortNumber,
+                EndPortNumber = i.Port.EndPortNumber,
                 PortDirection = (PortDirections)i.Port.PortDirection.Id,
                 StartDate = i.Port.StartDate,
                 EndDate = i.Port.EndDate
@@ -182,7 +183,9 @@ namespace IPRequestForm.ViewModels
 
         public PortType PortType { get; set; }
 
-        public int PortNumber { get; set; }
+        public int StartPortNumber { get; set; }
+
+        public int? EndPortNumber { get; set; }
 
         public PortDirections PortDirection { get; set; }
 

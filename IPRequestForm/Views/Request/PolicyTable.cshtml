@@ -51,11 +51,11 @@
                 <td>
                     @if (isView)
                     {
-                        <span>@policy.PortNumber</span>
+                        <span>@policy.StartPortNumber@(policy.EndPortNumber.HasValue ? "-" + policy.EndPortNumber.Value : "")</span>
                     }
                     else
                     {
-                        <input type="text" name="PortNumber" tabindex="0" value="@policy.PortNumber" />
+                        <input type="text" name="PortNumber" tabindex="0" value="@policy.StartPortNumber@(policy.EndPortNumber.HasValue ? "-" + policy.EndPortNumber.Value : "")" />
                     }
                 </td>
                 <td>
