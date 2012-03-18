@@ -12,7 +12,7 @@ namespace IPRequestForm.Models
     {
         private RequestRepository repo = new RequestRepository();
 
-        private string domainName = "http://localhost";
+        private string domainName = "http://10.12.0.54";
 
         public string LoadMailTemplate(string name, object model)
         {
