@@ -248,7 +248,7 @@ h3 {
     margin: 20px -29px;
     padding: 25px 30px 30px;
     background-color: hsla(0, 0%, 96%, 1);
-    background-image: url(/Content/img/curtain-light.png);
+    
     border: solid 1px hsla(0, 0%, 80%, 1);
     border-left-width: 0px;
     border-right-width: 0px;
@@ -304,7 +304,7 @@ table.ports, .request-log {
 }
 
 .request-log {
-    background-image: url(/Content/img/curtain-light.png);
+
 }
 
 .ports thead tr, .request-log thead tr {
