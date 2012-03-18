@@ -909,7 +909,7 @@ namespace IPRequestForm.Models
             serverIP.Virtualization = action.Request.Virtualization;
             serverIP.IP = CreateIP(IPAddress.Parse(serverIPAddress));
 
-            if (serverIP.IP.Segment == null || serverIP.IP.Segment.Vlan == null || serverIP.IP.Segment.Vlan.Id == securityAction.Vlan.Id)
+            if (serverIP.IP.Segment == null || serverIP.IP.Segment.Vlan == null || serverIP.IP.Segment.Vlan.Id != securityAction.Vlan.Id)
             {
                 throw new VlanException("The assigned IP address is not within the Vlan approved by the security team.");
             }
