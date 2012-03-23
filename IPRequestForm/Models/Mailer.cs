@@ -102,7 +102,7 @@ namespace IPRequestForm.Models
 
         public void SendRequestApprovedMail(Request request)
         {
-            var action = request.SecurityActions.First();
+            var action = request.SecurityActions.OrderByDescending(x => x.Id).First();
 
             var subject = string.Format("{0} ({1}) Approved by {2} {3}", request.ApplicationName, request.BusinessService, action.User.FirstName, action.User.LastName);
             var body = LoadMailTemplate("ApprovedRequestMail", new {
@@ -145,7 +145,7 @@ namespace IPRequestForm.Models
             var body = LoadMailTemplate("ApprovedRequestMail", new {
                 User = action.User,
                 Url = string.Format("{0}/request/{1}", domainName, request.Id),
-                Vlan = request.SecurityActions.First().Vlan,
+                Vlan = request.SecurityActions.OrderByDescending(x => x.Id).First().Vlan,
                 IPAddress = CommonFunctions.IPDotted(action.ServerIP.IP.Address)
             });
 
