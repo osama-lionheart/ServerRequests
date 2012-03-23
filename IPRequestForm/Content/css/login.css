@@ -266,7 +266,25 @@ h3 {
     color: hsla(0, 0%, 0%, 0.6);
     text-shadow: 0 1px 1px white;
     font-size: 1.2em;
+    cursor: pointer;
 }
+
+.log-title-wrapper h3 {
+    cursor: pointer;
+}
+
+.request-policy h4::before, .log-title-wrapper h3::before {
+    content: '▼';
+    display: inline-block;
+    -webkit-transform: rotate(-90deg);
+    font-size: 0.9em;
+    vertical-align: text-top;
+}
+
+.request-policy .opened h4::before, .log-title-wrapper.opened h3::before {
+    -webkit-transform: rotate(0);
+}
+
 h3.section-header {
     position: relative;
 }
@@ -292,6 +310,16 @@ h3.section-header:after {
 
 /*****************************************************************************/
 
+
+
+/* Collapsable Ports tables */
+.ports-wrapper, .request-log-wrapper {
+    display: none;
+}
+
+.opened .ports-wrapper, .opened .request-log-wrapper {
+    display: block;
+}
 .ports-wrapper, .request-log-wrapper {
     border: solid 3px hsla(0, 0%, 92%, 1);
     border-radius: 3px;

@@ -66,6 +66,15 @@
             }
         }
 
+        // Collapse ports tables
+
+        $('.ports-title-wrapper h4').click(function() {
+            var $this = $(this);
+            var $portsTitleWrapper = $this.parents('.ports-title-wrapper');
+
+            $portsTitleWrapper.toggleClass('opened');
+        });
+
         $('.ports').each(function() {
             $(this).find('tr:last-child input[type=text]').bind('textchange', onTextChange);
         });
@@ -351,18 +360,29 @@
                 {"classes", ""},
                 {"portDirectionId", (int)IPRequestForm.ViewModels.PortDirections.RequestedServerToServer }
             };
-    }
-
-            <h3>Server Policy</h3>
-            <h4>User to Requested Server</h4>
-            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.UserToRequestedServer) : null, vmUserToRequestedServer)
-            <h4>Requested Server to User</h4>
-            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToUser) : null, vmRequestedServerToUser)
-            <h4>Other Server to Requested Server</h4>
-            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.ServerToRequestedServer) : null, vmServerToRequestedServer)
-            <h4>Requested Server to Other Server</h4>
-            @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToServer) : null, vmRequestedServerToServer)
-            
+            }
+            <h3>
+                Server Policy</h3>
+            <div class="ports-title-wrapper">
+                <h4>
+                    User to Requested Server</h4>
+                @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.UserToRequestedServer) : null, vmUserToRequestedServer)
+            </div>
+            <div class="ports-title-wrapper">
+                <h4>
+                    Requested Server to User</h4>
+                @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToUser) : null, vmRequestedServerToUser)
+            </div>
+            <div class="ports-title-wrapper">
+                <h4>
+                    Other Server to Requested Server</h4>
+                @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.ServerToRequestedServer) : null, vmServerToRequestedServer)
+            </div>
+            <div class="ports-title-wrapper">
+                <h4>
+                    Requested Server to Other Server</h4>
+                @Html.Partial("PolicyTable", Model.Policies != null ? Model.Policies.Where(x => x.PortDirection == IPRequestForm.ViewModels.PortDirections.RequestedServerToServer) : null, vmRequestedServerToServer)
+            </div>
         </div>
     }
     @if (!isView)

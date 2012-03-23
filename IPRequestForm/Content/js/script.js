@@ -38,4 +38,12 @@
         }
     });
 
+
+    $('.log-title-wrapper h3').click(function () {
+        var $this = $(this);
+        var $logTitleWrapper = $this.parents('.log-title-wrapper');
+
+        $logTitleWrapper.toggleClass('opened');
+    });
+
 });

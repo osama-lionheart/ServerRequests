@@ -274,7 +274,7 @@ else
                         var ip = $(this).val().trim();
                     
                         for(var i = switches.length - 1; i > 0; i--) {
-                        
+
                             if(switches[i].IPAddress === ip) {
                                 $('#SwitchName').val(switches[i].Name).attr('disabled', 'disabled');
                                 $('.stackable').prop('checked', switches[i].Stackable).attr('disabled', 'disabled');
@@ -375,9 +375,9 @@ else
         }
     }
 }
-
-<h3 class="section-header"><span>Log</span></h3>
-<div class="request-log-wrapper">
+<div class="log-title-wrapper">
+    <h3 class="section-header"><span>Log</span></h3>
+    <div class="request-log-wrapper">
     <table class="request-log">
         <thead>
             <tr>
@@ -415,5 +415,6 @@ else
                 }
                 </tbody>
     </table>
+</div>
 </div>
 </div>
