@@ -150,7 +150,7 @@ else
                     <option value="0">Select...</option>
                     @foreach (var vlan in @Model.Vlans)
                     {
-                        <option value="@vlan.Id" @(vlan.Id == Model.LastSecurityAction.VlanId ? "selected" : "")>@vlan.Name
+                        <option value="@vlan.Id" @(vlan == Model.Vlan ? "selected" : "")>@vlan.Name
                             @vlan.Number</option>
                     }
                 </select>
@@ -246,8 +246,8 @@ else
         }
         else if (Model.LastCommunicationAction != null && Model.LastCommunicationAction.User.Id == Model.User.Id && Model.NewerRequest == null)
         {
-            var canEdit = (Model.LastCommunicationAction.Completed == true);
-            var serverIPAssigned = (Model.LastCommunicationAction.Completed == false);
+            var canEdit = !string.IsNullOrWhiteSpace(Model.SwitchIPAddress);
+            var serverIPAssigned = !string.IsNullOrWhiteSpace(Model.IPAddress);
     
     <div class="communication-action">
         <form action="/Request/@Model.Request.RequestId/ResolveRequest" method="post" data-confirm="true">
@@ -334,7 +334,7 @@ else
             <label>
                 <strong>Server IP Address</strong>
                 <input type="text" id="ServerIPAddress" name="ServerIPAddress"
-                value="@((canEdit || serverIPAssigned) ? Html.Raw(Model.IPAddress).ToHtmlString() : "")"/>
+                value="@((serverIPAssigned) ? Html.Raw(Model.IPAddress).ToHtmlString() : "")"/>
             </label>
         @if (ipError)
         {
@@ -345,7 +345,7 @@ else
         <div class="form-element notes">
             <label>
                 <strong>Notes</strong>
-                <textarea name="notes" rows="3" tabindex="0">@(canEdit || serverIPAssigned ? Html.Raw(Model.LastCommunicationAction.Notes).ToHtmlString() : "")</textarea>
+                <textarea name="notes" rows="3" tabindex="0">@(serverIPAssigned ? Html.Raw(Model.LastCommunicationAction.Notes).ToHtmlString() : "")</textarea>
             </label>
         </div>
 

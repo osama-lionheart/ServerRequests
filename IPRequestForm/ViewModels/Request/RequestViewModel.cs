@@ -19,11 +19,7 @@ namespace IPRequestForm.ViewModels
 
         public SecurityAction LastSecurityAction { get; set; }
 
-        public IEnumerable<SecurityAction> SecurityActions { get; set; }
-
         public CommunicationAction LastCommunicationAction { get; set; }
-
-        public IEnumerable<CommunicationAction> CommunicationActions { get; set; }
 
         public string ServerIPAddressError { get; set; }
 
@@ -74,33 +70,58 @@ namespace IPRequestForm.ViewModels
 
             Request = new RequestFormViewModel(request, user, RequestFormViews.View);
 
-            if (request.SecurityActions.Count > 0)
+            // Get all the security actions of all the versions of this request.
+            var securityActions = request.OriginalRequest.Requests.SelectMany(x => x.SecurityActions).OrderByDescending(i => i.Id);
+
+            // Get the last vlan assigned to this request or any previous versions.
+            if (securityActions.Count() > 0)
             {
-                SecurityActions = request.SecurityActions.OrderByDescending(i => i.Id);
-                LastSecurityAction = SecurityActions.First();
-                Vlan = LastSecurityAction.Vlan;
+                var lastApprovedAction = securityActions.FirstOrDefault(x => x.Approved == true);
+                
+                if (lastApprovedAction != null)
+                {
+                    Vlan = lastApprovedAction.Vlan;
+                }
             }
 
+            // Get the last security action of this request version.
+            if (request.SecurityActions.Count > 0)
+            {
+                LastSecurityAction = request.SecurityActions.OrderByDescending(x => x.Id).First();
+            }
+
+            // Get the last communication action of this request version.
             if (request.CommunicationActions.Count > 0)
             {
-                CommunicationActions = request.CommunicationActions.OrderByDescending(i => i.Id);
-                LastCommunicationAction = CommunicationActions.First();
-                IPAddress = (LastCommunicationAction.Completed != null) ? CommonFunctions.IPDotted(LastCommunicationAction.ServerIP.IP.Address) : null;
+                LastCommunicationAction = request.CommunicationActions.OrderByDescending(x => x.Id).First();
 
-                if (LastCommunicationAction.Completed == true)
+                Notes = LastCommunicationAction.Notes;
+            }
+
+            // Get all the communication actions for all the versions of this request.
+            var CommunicationActions = request.OriginalRequest.Requests.SelectMany(x => x.CommunicationActions).OrderByDescending(i => i.Id);
+
+            if (CommunicationActions.Count() > 0)
+            {
+                var lastCompletedAction = CommunicationActions.First(x => x.Completed != null);
+
+                if (lastCompletedAction != null)
+                {
+                    IPAddress = CommonFunctions.IPDotted(lastCompletedAction.ServerIP.IP.Address);
+                }
+                
+                if (lastCompletedAction.Completed == true)
                 {
                     if (Request.ServerType.Id == (int)ServerTypes.Standalone)
                     {
-                        SwitchIPAddress = CommonFunctions.IPDotted(LastCommunicationAction.ServerIP.SwitchPort.SwitchModule.Switch.IP.Address);
-                        SwitchName = LastCommunicationAction.ServerIP.SwitchPort.SwitchModule.Switch.Name;
-                        SwitchNumber = LastCommunicationAction.ServerIP.SwitchPort.SwitchModule.Switch.StackableNumber;
+                        SwitchIPAddress = CommonFunctions.IPDotted(lastCompletedAction.ServerIP.SwitchPort.SwitchModule.Switch.IP.Address);
+                        SwitchName = lastCompletedAction.ServerIP.SwitchPort.SwitchModule.Switch.Name;
+                        SwitchNumber = lastCompletedAction.ServerIP.SwitchPort.SwitchModule.Switch.StackableNumber;
 
-                        SwitchModuleNumber = LastCommunicationAction.ServerIP.SwitchPort.SwitchModule.Number;
-                        SwitchPortNumber = LastCommunicationAction.ServerIP.SwitchPort.Port;
+                        SwitchModuleNumber = lastCompletedAction.ServerIP.SwitchPort.SwitchModule.Number;
+                        SwitchPortNumber = lastCompletedAction.ServerIP.SwitchPort.Port;
                     }
                 }
-
-                Notes = LastCommunicationAction.Notes;
             }
 
             Vlans = vlans;

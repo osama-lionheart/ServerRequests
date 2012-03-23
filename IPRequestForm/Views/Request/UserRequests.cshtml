@@ -47,8 +47,8 @@
                         {
                             <div class="badge security">
                                 <a class="user-name" href="/@request.LastSecurityAction.User.Id/">@request.LastSecurityAction.User.FirstName @request.LastSecurityAction.User.LastName</a>
-                                <div class="date" title="@request.SecurityActions.Last().Date.ToString("d MMM yyyy h:MM tt")">
-                                    @request.SecurityActions.Last().Date.ToString("d MMM yyyy")
+                                <div class="date" title="@request.LastSecurityAction.Date.ToString("d MMM yyyy h:MM tt")">
+                                    @request.LastSecurityAction.Date.ToString("d MMM yyyy")
                                 </div>
                             </div>
                         }
@@ -67,7 +67,22 @@
                     <div class="table-cell" style="min-width: 150px;">
                     @if (request.IPAddress != null || request.Vlan != null)
                     {
-                        <div class="ribbon @(request.LastCommunicationAction != null && request.LastCommunicationAction.Completed == true ? "blue" : "green")">
+                        string color;
+                        
+                        if(request.LastCommunicationAction != null && request.LastCommunicationAction.Completed == true)
+                        {
+                            color = "blue";
+                        }
+                        else if(request.LastSecurityAction != null && request.LastSecurityAction.Approved == true)
+                        {
+                            color = "green";
+                        }
+                        else
+                        {
+                            color = "orange";
+                        }
+                        
+                        <div class="ribbon @color">
                             <div class="request-ip">
                                 @if (request.IPAddress != null)
                                 {
