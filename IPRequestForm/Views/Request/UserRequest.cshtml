@@ -273,11 +273,12 @@ else
                     $('#SwitchIPAddress').bind('textchange', function() {
                         var ip = $(this).val().trim();
                     
-                        for(var i = switches.length - 1; i > 0; i--) {
+                        for(var i = switches.length - 1; i >= 0; i--) {
+                            console.log(switches[i].IPAddress, ip);
 
                             if(switches[i].IPAddress === ip) {
-                                $('#SwitchName').val(switches[i].Name).attr('disabled', 'disabled');
-                                $('.stackable').prop('checked', switches[i].Stackable).attr('disabled', 'disabled');
+                                $('#SwitchName').val(switches[i].Name);//.attr('disabled', 'disabled');
+                                $('.stackable').prop('checked', switches[i].Stackable);//.attr('disabled', 'disabled');
                     
                             } else {
                                 $('#SwitchName').val('').removeAttr('disabled');
