@@ -35,12 +35,12 @@ namespace IPRequestForm.Controllers
 
         [Authorize(Roles = "Communication")]
         [POST("/Request/{requestId}/ResolveRequest")]
-        public ActionResult ResolveRequest(int requestId, int? switchId, string switchIPAddress, string switchName, int? switchNumber,
+        public ActionResult ResolveRequest(int requestId, string switchIPAddress, string switchName, int? switchNumber,
             int? switchModuleNumber, int? switchPortNumber, string serverIPAddress, string notes)
         {
             try
             {
-                var action = repo.ResolveRequest(requestId, switchId, switchIPAddress, switchName, switchNumber, switchModuleNumber, switchPortNumber, serverIPAddress, notes);
+                var action = repo.ResolveRequest(requestId, switchIPAddress, switchName, switchNumber, switchModuleNumber, switchPortNumber, serverIPAddress, notes);
 
                 repo.SaveChanges();
 

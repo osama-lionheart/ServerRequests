@@ -893,7 +893,7 @@ namespace IPRequestForm.Models
             return null;
         }
 
-        public CommunicationAction ResolveRequest(int requestId, int? switchId, string switchIPAddress, string switchName, int? switchNumber,
+        public CommunicationAction ResolveRequest(int requestId, string switchIPAddress, string switchName, int? switchNumber,
             int? switchModuleNumber, int? switchPortNumber, string serverIPAddress, string notes)
         {
             var action = AssignCommunicationEngineer(requestId, notes);
@@ -917,37 +917,42 @@ namespace IPRequestForm.Models
             if (action.Request.Virtualization.Server.ServerType.Id == (int)ServerTypes.Standalone)
             {
                 if ((switchName != null && !string.IsNullOrEmpty(switchName.Trim()) && switchIPAddress != null && 
-                    !string.IsNullOrEmpty(switchIPAddress.Trim()) || switchId.HasValue)
+                    !string.IsNullOrEmpty(switchIPAddress.Trim()))
                     && switchModuleNumber.HasValue && switchPortNumber.HasValue)
                 {
-                    var switchPort = serverIP.SwitchPort = new SwitchPort();
-                    switchPort.Port = switchPortNumber.Value;
-
-                    var switchModule = switchPort.SwitchModule = new SwitchModule();
-                    switchModule.Number = switchModuleNumber.Value;
-
                     var switchIP = IPAddress.Parse(switchIPAddress);
                     var switchIPAddressArr = switchIP.GetAddressBytes();
 
-                    var switches = db.Switches.Where(i => i.IP.Address == switchIPAddressArr);
-                    var switchesCount = switches.Count();
-
-                    Switch newSwitch = null;
-
-                    if (switchesCount > 0)
-                    {
-                        newSwitch = switches.SingleOrDefault(i => i.StackableNumber == switchNumber);
-                    }
-
+                    var newSwitch = db.Switches.SingleOrDefault(i => i.IP.Address == switchIPAddressArr && i.StackableNumber.Equals(switchNumber));
+                    
                     if (newSwitch == null)
                     {
                         newSwitch = new Switch();
-                        newSwitch.Name = switchName;
-                        newSwitch.StackableNumber = switchNumber;
                         newSwitch.IP = CreateIP(switchIP);
                     }
 
-                    switchModule.Switch = newSwitch;
+                    newSwitch.Name = switchName;
+                    newSwitch.StackableNumber = switchNumber;
+
+                    var switchModule = newSwitch.SwitchModules.SingleOrDefault(x => x.Number == switchModuleNumber.Value);
+
+                    if (switchModule == null)
+                    {
+                        switchModule = new SwitchModule();
+                        switchModule.Number = switchModuleNumber.Value;
+                        switchModule.Switch = newSwitch;
+                    }
+
+                    var switchPort = switchModule.SwitchPorts.SingleOrDefault(x => x.Port == switchPortNumber.Value);
+
+                    if (switchPort == null)
+                    {
+                        switchPort = new SwitchPort();
+                        switchPort.Port = switchPortNumber.Value;
+                        switchPort.SwitchModule = switchModule;
+                    }
+
+                    serverIP.SwitchPort = switchPort;
 
                     action.Completed = true;
                 }
