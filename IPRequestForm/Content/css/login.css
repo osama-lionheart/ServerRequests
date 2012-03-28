@@ -565,13 +565,13 @@ input[type="checkbox"]:hover, input[type="radio"]:hover {
 
 .ipaddress-view
 {
-background-color:hsl(60, 100%, 90%);
-text-align: center;
-color: black;
-padding: 7px;
-box-shadow: 0px 0px 4px 
-hsla(15, 0%, 30%, 0.3);
-font-size: 17px;
+    background-color:hsl(60, 100%, 90%);
+    text-align: center;
+    color: black;
+    padding: 7px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 4px hsla(15, 0%, 30%, 0.3);
+    font-size: 17px;
 }
 
     

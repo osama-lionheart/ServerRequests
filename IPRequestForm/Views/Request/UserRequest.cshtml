@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "UserRequest";
 }
+@if(!string.IsNullOrWhiteSpace(Model.IPAddress))
+{
 <div class="ipaddress-view">
         @Model.IPAddress
-        </div>
-<br />
-<br />
+</div>
+}
 <div class="actions-bar">
     @if (Model.NewerRequest == null)
     {

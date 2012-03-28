@@ -74,11 +74,11 @@ namespace IPRequestForm.Models
                 }
                 else if (Roles.IsUserInRole(user.Username, "Security"))
                 {
-                    requests = requests.Where(i => i.UserId == user.Id || i.SecurityActions.Count > 0 && GetLastSecurityAction(i).UserId == user.Id);
+                    requests = requests.Where(i => i.UserId == user.Id || i.SecurityActions.Count > 0 && i.SecurityActions.OrderByDescending(x => x.Id).FirstOrDefault().UserId == user.Id);
                 }
                 else if (Roles.IsUserInRole(user.Username, "Communication"))
                 {
-                    requests = requests.Where(i => i.UserId == user.Id || i.CommunicationActions.Count > 0 && GetLastCommunicationAction(i).UserId == user.Id);
+                    requests = requests.Where(i => i.UserId == user.Id || i.CommunicationActions.Count > 0 && i.CommunicationActions.OrderByDescending(x => x.Id).FirstOrDefault().UserId == user.Id);
                 }
             }
 
