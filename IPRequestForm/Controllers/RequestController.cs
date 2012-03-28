@@ -181,8 +181,8 @@ namespace IPRequestForm.Controllers
         [GET("/")]
         [GET("/Request")]
         [GET("/Request/All/{pageNo=1}")]
-        [GET("/{userId?}")]
-        [GET("/{userId?}/Request")]
+        //[GET("/{userId}")]
+        [GET("/{userId}/Request")]
         [GET("/{userId?}/Request/All/{pageNo=1}")]
         public ActionResult UserRequests(int? userId, int? applicationTypeId, int? vlanId, int? pageNo)
         {

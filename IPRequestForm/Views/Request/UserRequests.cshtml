@@ -37,7 +37,7 @@
                         </div>
                         <div class="request-status">
                             <div class="badge user">
-                                <a class="user-name" href="/@request.Request.RequestUser.Id/">@request.Request.RequestUser.FirstName @request.Request.RequestUser.LastName</a>
+                                <a class="user-name" href="/@request.Request.RequestUser.Id/Request">@request.Request.RequestUser.FirstName @request.Request.RequestUser.LastName</a>
                                 <div class="date" title="@request.Request.Date.ToString("d MMM yyyy h:MM tt")">
                                     @request.Request.Date.ToString("d MMM yyyy")
                                 </div>
@@ -46,7 +46,7 @@
                         @if (@request.LastSecurityAction != null && request.LastSecurityAction.Assigned)
                         {
                             <div class="badge security">
-                                <a class="user-name" href="/@request.LastSecurityAction.User.Id/">@request.LastSecurityAction.User.FirstName @request.LastSecurityAction.User.LastName</a>
+                                <a class="user-name" href="/@request.LastSecurityAction.User.Id/Request">@request.LastSecurityAction.User.FirstName @request.LastSecurityAction.User.LastName</a>
                                 <div class="date" title="@request.LastSecurityAction.Date.ToString("d MMM yyyy h:MM tt")">
                                     @request.LastSecurityAction.Date.ToString("d MMM yyyy")
                                 </div>
@@ -56,7 +56,7 @@
                         @if (@request.LastCommunicationAction != null && request.LastCommunicationAction.Assigned)
                         {
                             <div class="badge communication">
-                                <a class="user-name" href="/@request.LastCommunicationAction.User.Id/">@request.LastCommunicationAction.User.FirstName @request.LastCommunicationAction.User.LastName</a>
+                                <a class="user-name" href="/@request.LastCommunicationAction.User.Id/Request">@request.LastCommunicationAction.User.FirstName @request.LastCommunicationAction.User.LastName</a>
                                 <div class="date" title="@request.LastCommunicationAction.Date.ToString("d MMM yyyy h:MM tt")">
                                     @request.LastCommunicationAction.Date.ToString("d MMM yyyy")
                                 </div>
