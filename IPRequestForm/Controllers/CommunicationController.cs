@@ -40,11 +40,14 @@ namespace IPRequestForm.Controllers
         {
             try
             {
+                var lastCompletedAction = repo.GetLastCompletedCommunicationAction(requestId);
+
                 var action = repo.ResolveRequest(requestId, switchIPAddress, switchName, switchNumber, switchModuleNumber, switchPortNumber, serverIPAddress, notes);
 
                 repo.SaveChanges();
 
-                if (action.Completed == false)
+                if (lastCompletedAction == null ||
+                    action.ServerIP.IP.Id != lastCompletedAction.ServerIP.IP.Id)
                 {
                     mailer.SendRequestCompletedMail(repo.GetRequestById(requestId));
                 }

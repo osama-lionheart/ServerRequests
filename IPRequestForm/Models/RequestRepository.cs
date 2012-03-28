@@ -74,11 +74,11 @@ namespace IPRequestForm.Models
                 }
                 else if (Roles.IsUserInRole(user.Username, "Security"))
                 {
-                    requests = requests.Where(i => i.UserId == user.Id || i.SecurityActions.Count > 0 && i.SecurityActions.OrderByDescending(x => x.Id).FirstOrDefault().UserId == user.Id);
+                    requests = requests.Where(i => i.UserId == user.Id || i.SecurityActions.Count > 0 && GetLastSecurityAction(i).UserId == user.Id);
                 }
                 else if (Roles.IsUserInRole(user.Username, "Communication"))
                 {
-                    requests = requests.Where(i => i.UserId == user.Id || i.CommunicationActions.Count > 0 && i.CommunicationActions.OrderByDescending(x => x.Id).FirstOrDefault().UserId == user.Id);
+                    requests = requests.Where(i => i.UserId == user.Id || i.CommunicationActions.Count > 0 && GetLastCommunicationAction(i).UserId == user.Id);
                 }
             }
 
@@ -747,6 +747,30 @@ namespace IPRequestForm.Models
             return request.SecurityActions.LastOrDefault();
         }
 
+        public SecurityAction GetLastApprovedSecurityAction(int requestId)
+        {
+            return GetLastApprovedSecurityAction(GetRequestById(requestId));
+        }
+
+        public SecurityAction GetLastApprovedSecurityAction(Request request)
+        {
+            // Get all the security actions of all the versions of this request.
+            var securityActions = request.OriginalRequest.Requests.SelectMany(x => x.SecurityActions).OrderByDescending(i => i.Id);
+
+            // Get the last vlan assigned to this request or any previous versions.
+            return securityActions.FirstOrDefault(x => x.Approved == true);
+        }
+
+        public SecurityAction GetLastSecurityAction(int requestId)
+        {
+            return GetLastSecurityAction(GetRequestById(requestId));
+        }
+
+        public SecurityAction GetLastSecurityAction(Request request)
+        {
+            return request.SecurityActions.OrderByDescending(x => x.Id).FirstOrDefault();
+        }
+
         public SecurityAction ApproveRequest(int requestId, int? vlanId, string notes)
         {
             var request = GetRequestById(requestId);
@@ -850,6 +874,29 @@ namespace IPRequestForm.Models
             return request.CommunicationActions.LastOrDefault();
         }
 
+        public CommunicationAction GetLastCompletedCommunicationAction(int requestId)
+        {
+            return GetLastCompletedCommunicationAction(GetRequestById(requestId));
+        }
+
+        public CommunicationAction GetLastCompletedCommunicationAction(Request request)
+        {
+            // Get all the communication actions for all the versions of this request.
+            var CommunicationActions = request.OriginalRequest.Requests.SelectMany(x => x.CommunicationActions).OrderByDescending(i => i.Id);
+
+            return CommunicationActions.FirstOrDefault(x => x.Completed != null);
+        }
+
+        public CommunicationAction GetLastCommunicationAction(int requestId)
+        {
+            return GetLastCommunicationAction(GetRequestById(requestId));
+        }
+
+        public CommunicationAction GetLastCommunicationAction(Request request)
+        {
+            return request.CommunicationActions.OrderByDescending(x => x.Id).FirstOrDefault();
+        }
+
         public CommunicationAction AssignCommunicationEngineer(int requestId, string notes)
         {
             var request = GetRequestById(requestId);
@@ -898,7 +945,7 @@ namespace IPRequestForm.Models
         {
             var action = AssignCommunicationEngineer(requestId, notes);
 
-            var securityAction = action.Request.SecurityActions.OrderByDescending(x => x.Id).FirstOrDefault();
+            var securityAction = GetLastSecurityAction(action.Request);
             
             if(securityAction == null || !securityAction.Assigned || securityAction.Approved != true || securityAction.Vlan == null)
             {

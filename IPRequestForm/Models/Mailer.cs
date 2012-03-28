@@ -102,7 +102,7 @@ namespace IPRequestForm.Models
 
         public void SendRequestApprovedMail(Request request)
         {
-            var action = request.SecurityActions.OrderByDescending(x => x.Id).First();
+            var action = repo.GetLastSecurityAction(request);
 
             var subject = string.Format("{0} ({1}) Approved by {2} {3}", request.ApplicationName, request.BusinessService, action.User.FirstName, action.User.LastName);
             var body = LoadMailTemplate("ApprovedRequestMail", new {
@@ -121,7 +121,7 @@ namespace IPRequestForm.Models
 
         public void SendRequestRejectedMail(Request request)
         {
-            var action = request.SecurityActions.First();
+            var action = repo.GetLastSecurityAction(request);
 
             var subject = string.Format("{0} ({1}) Rejected by {2} {3}", request.ApplicationName, request.BusinessService, action.User.FirstName, action.User.LastName);
             var body = LoadMailTemplate("RejectedRequestMail", new {
@@ -139,13 +139,13 @@ namespace IPRequestForm.Models
 
         public void SendRequestCompletedMail(Request request)
         {
-            var action = request.CommunicationActions.First();
-
+            var action = repo.GetLastCommunicationAction(request);
+            
             var subject = string.Format("{0} ({1}) Completed by {2} {3}", request.ApplicationName, request.BusinessService, action.User.FirstName, action.User.LastName);
-            var body = LoadMailTemplate("ApprovedRequestMail", new {
+            var body = LoadMailTemplate("CompletedRequestMail", new {
                 User = action.User,
                 Url = string.Format("{0}/request/{1}", domainName, request.Id),
-                Vlan = request.SecurityActions.OrderByDescending(x => x.Id).First().Vlan,
+                Vlan = repo.GetLastSecurityAction(request).Vlan,
                 IPAddress = CommonFunctions.IPDotted(action.ServerIP.IP.Address)
             });
 

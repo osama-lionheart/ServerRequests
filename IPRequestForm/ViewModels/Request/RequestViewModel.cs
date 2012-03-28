@@ -70,18 +70,11 @@ namespace IPRequestForm.ViewModels
 
             Request = new RequestFormViewModel(request, user, RequestFormViews.View);
 
-            // Get all the security actions of all the versions of this request.
-            var securityActions = request.OriginalRequest.Requests.SelectMany(x => x.SecurityActions).OrderByDescending(i => i.Id);
+            var lastApprovedAction = repo.GetLastApprovedSecurityAction(request);
 
-            // Get the last vlan assigned to this request or any previous versions.
-            if (securityActions.Count() > 0)
+            if (lastApprovedAction != null)
             {
-                var lastApprovedAction = securityActions.FirstOrDefault(x => x.Approved == true);
-                
-                if (lastApprovedAction != null)
-                {
-                    Vlan = lastApprovedAction.Vlan;
-                }
+                Vlan = lastApprovedAction.Vlan;
             }
 
             // Get the last security action of this request version.
@@ -98,18 +91,12 @@ namespace IPRequestForm.ViewModels
                 Notes = LastCommunicationAction.Notes;
             }
 
-            // Get all the communication actions for all the versions of this request.
-            var CommunicationActions = request.OriginalRequest.Requests.SelectMany(x => x.CommunicationActions).OrderByDescending(i => i.Id);
+            var lastCompletedAction = repo.GetLastCompletedCommunicationAction(request);
 
-            if (CommunicationActions.Count() > 0)
+            if (lastCompletedAction != null)
             {
-                var lastCompletedAction = CommunicationActions.First(x => x.Completed != null);
+                IPAddress = CommonFunctions.IPDotted(lastCompletedAction.ServerIP.IP.Address);
 
-                if (lastCompletedAction != null)
-                {
-                    IPAddress = CommonFunctions.IPDotted(lastCompletedAction.ServerIP.IP.Address);
-                }
-                
                 if (lastCompletedAction.Completed == true)
                 {
                     if (Request.ServerType.Id == (int)ServerTypes.Standalone)
@@ -186,7 +173,7 @@ namespace IPRequestForm.ViewModels
         [Display(Name = "Undeleted")]
         RequestUndeleted,
 
-        [Display(Name="Security Assigned")]
+        [Display(Name = "Security Assigned")]
         SecurityAssigned,
         [Display(Name = "Security Released")]
         SecurityReleased,
